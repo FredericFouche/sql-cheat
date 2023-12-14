@@ -96,8 +96,25 @@ client.connect();
 - Exécuter une requête SQL:
 
 ```js
-client.query('SELECT * FROM users', (err, res) => {
+client.query('SELECT * FROM "users";', (err, res) => {
   console.log(err, res);
   client.end();
 });
 ```
+
+- Async et await:
+
+```js
+async function getUsers() {
+  try {
+    const res = await client.query('SELECT * FROM "users";');
+    console.log(res.rows);
+  } catch (err) {
+    console.log(err.stack);
+  }
+}
+```
+
+Async et await seront utilisés pour créer des fonctions asynchrones. Les fonctions asynchrones sont des fonctions qui peuvent être suspendues et reprises plus tard. Elles permettent d'attendre des opérations asynchrones comme les requêtes de bdd qui peuvent prendre du temps.
+Await permet d'attendre la résolution d'une promesse. Une promesse est un objet qui représente la résolution ou le rejet éventuel d'une opération asynchrone. Await ne peut être utilisé que dans les fonctions asynchrones.
+Il est courant d'utiliser await devant une promesse qui renvoie le résultat d'une requête de base de données.
