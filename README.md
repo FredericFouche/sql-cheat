@@ -108,6 +108,7 @@ client.query('SELECT * FROM "users";', (err, res) => {
 async function getUsers() {
   try {
     const res = await client.query('SELECT * FROM "users";');
+    // Ce que vous voulez faire avec vos données
     console.log(res.rows);
   } catch (err) {
     console.log(err.stack);
