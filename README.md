@@ -160,3 +160,31 @@ async function getUsers() {
 - end() - permet de terminer la connexion avec la base de données. Exemple: `client.end();`
 
 ---
+
+## Gestion des utilisateurs
+
+### Créer un utilisateur sur une base de données PostgreSQL
+
+- Pour créer l'utilisateur `trombi` sur la base de données `exemple` avec le mot de passe `1234`, exécuter la commande suivante:
+
+```sql
+CREATE USER trombi WITH PASSWORD '1234';
+```
+
+- Création de la DB associée à l'utilisateur `trombi`:
+
+```sql
+CREATE DATABASE exemple OWNER trombi;
+```
+
+- Pour supprimer la DB `exemple`:
+
+```sql
+DROP DATABASE exemple;
+```
+
+- Pour supprimer l'utilisateur `trombi`:
+
+```sql
+DROP USER trombi;
+```
