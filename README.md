@@ -181,22 +181,22 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 ### Initialiser une base de données avec PostgreSQL dans Node.js
 
 - Installer le module `pg` avec npm: `npm install pg`
+- Dans votre fichier .env ajouter les variables d'environnement suivantes:
+
+```
+PG_URL=postgres://username:password@localhost:5432/database_name
+```
+
 - Créer un fichier `database.js` et y ajouter le code suivant:
 
 ```js
 const { Client } = require('pg');
 ```
 
-- Créer une nouvelle instance de client:
+- Créer une nouvelle instance de client avec la variable d'environnement PG_URL:
 
 ```js
-const client = new Client({
-  user: 'VOTRE_UTILISATEUR',
-  host: 'VOTRE_HOST',
-  database: 'VOTRE_DATABASE',
-  password: 'VOTRE_MOT_DE_PASSE',
-  port: LE_PORT_DE_VOTRE_DATABASE,
-});
+const client = new Client(process.env.PG_URL);
 ```
 
 - Connecter le client à la base de données:
@@ -353,10 +353,37 @@ CREATE TABLE IF NOT EXISTS clients (
 );
 ```
 
+</br >
+
 ```sql
 -- Supprimer la table clients si elle existe
 DROP TABLE IF EXISTS clients;
 ```
+
+</br >
+
+---
+
+</br >
+
+### Les types de données en SQL
+
+SQL utilise des données très structurées. Il faut donc spécifier le type de données de chaque colonne lors de la création d'une table. Les types de données les plus courants sont les suivants:
+
+| Type de Donnée  | Description                                                                                                                |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `VARCHAR(size)` | Permet de spécifier une chaîne de caractères de taille variable. La taille maximale est spécifiée dans les parenthèses.    |
+| `CHAR(size)`    | Permet de spécifier une chaîne de caractères de taille fixe. La taille maximale est spécifiée dans les parenthèses.        |
+| `INT`           | Permet de spécifier un nombre entier.                                                                                      |
+| `SMALLINT`      | Permet de spécifier un nombre entier plus petit.                                                                           |
+| `BIGINT`        | Permet de spécifier un nombre entier plus grand.                                                                           |
+| `DECIMAL(s, d)` | Permet de spécifier un nombre décimal. Le paramètre `s` est le nombre total de chiffres et `d` est le nombre de décimales. |
+| `DATE`          | Permet de spécifier une date.                                                                                              |
+| `DATETIME`      | Permet de spécifier une date et une heure.                                                                                 |
+| `TIMESTAMP`     | Permet de spécifier une date et une heure.                                                                                 |
+| `BOOLEAN`       | Permet de spécifier une valeur booléenne.                                                                                  |
+| `TEXT`          | Permet de spécifier un texte.                                                                                              |
+| `ARRAY`         | Permet de spécifier un tableau.                                                                                            |
 
 </br >
 
