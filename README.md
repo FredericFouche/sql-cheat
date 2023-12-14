@@ -208,8 +208,8 @@ Expliquons cette commande:
 #### Créer une table
 
 ```sql
--- Créer une table users
-CREATE TABLE users (
+-- Créer une table clients
+CREATE TABLE clients (
   id SERIAL PRIMARY KEY,
   -- SERIAL est un type de données qui permet de générer automatiquement des valeurs numériques uniques.
   -- PRIMARY KEY indique que le champ est une clé primaire.
@@ -226,13 +226,13 @@ CREATE TABLE users (
 #### Insérer des données dans la table users
 
 ```sql
-INSERT INTO users (name, email, password) VALUES ('John', 'john@example.com', '1234');
+INSERT INTO clients (name, email, password) VALUES ('John', 'john@example.com', '1234');
 ```
 
 #### Sélectionner notre utilisateur
 
 ```sql
-SELECT * FROM users WHERE email = 'john@example.com';
+SELECT * FROM clients WHERE email = 'john@example.com';
 ```
 
 ---
