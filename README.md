@@ -188,3 +188,9 @@ DROP DATABASE exemple;
 ```sql
 DROP USER trombi;
 ```
+
+### Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:
+
+```sql
+psql -d exemple -U trombi
+```
