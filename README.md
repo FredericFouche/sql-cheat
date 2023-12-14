@@ -106,11 +106,11 @@ Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de b
 
 ## Les commandes de base de SQL
 
-Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieurs catégories: les commandes de manipulation des champs, les commandes de base de données, les commandes de manipulation de table, les commandes de contraintes, les commandes de requête et les commandes de requête avancées.
+Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieurs catégories: les commandes de manipulation des lignes, les commandes de base de données, les commandes de manipulation de table, les commandes de contraintes, les commandes de requête et les commandes de requête avancées.
 
 </br >
 
-### SQL Commandes de manipulation des champs
+### SQL Commandes de manipulation des lignes
 
 - `SELECT` - permet de selectionner des données dans une base de données. Exemple: `SELECT * FROM users;`
 - `UPDATE` - permet de mettre à jour des données dans une base de données. Exemple: `UPDATE users SET name = 'John' WHERE id = 1;`
