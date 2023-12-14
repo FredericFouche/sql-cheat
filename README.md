@@ -161,9 +161,11 @@ async function getUsers() {
 
 ---
 
-## Gestion des utilisateurs
+## Quelques exemples d'usage de SQL
 
-### Créer un utilisateur sur une base de données PostgreSQL
+### Gestion des utilisateurs
+
+#### Créer un utilisateur sur une base de données PostgreSQL
 
 - Pour créer l'utilisateur `trombi` sur la base de données `exemple` avec le mot de passe `1234`, exécuter la commande suivante:
 
@@ -189,7 +191,7 @@ DROP DATABASE exemple;
 DROP USER trombi;
 ```
 
-### Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:
+#### Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:
 
 ```sql
 psql -d exemple -U trombi
@@ -202,5 +204,35 @@ Expliquons cette commande:
 - `exemple` - est le nom de la base de données.
 - `-U` - permet de spécifier l'utilisateur avec lequel se connecter.
 - `trombi` - est le nom de l'utilisateur.
+
+#### Créer une table
+
+```sql
+-- Créer une table users
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  -- SERIAL est un type de données qui permet de générer automatiquement des valeurs numériques uniques.
+  -- PRIMARY KEY indique que le champ est une clé primaire.
+  -- Auto-incrementation de l'id
+  name VARCHAR(255) NOT NULL,
+  -- VARCHAR(255) est un type de données qui permet de stocker des chaînes de caractères.
+  email VARCHAR(255) NOT NULL UNIQUE,
+  -- UNIQUE indique que les valeurs de champ doivent être uniques.
+  -- NOT NULL indique que le champ ne peut pas être NULL.
+  password VARCHAR(255) NOT NULL
+);
+```
+
+#### Insérer des données dans la table users
+
+```sql
+INSERT INTO users (name, email, password) VALUES ('John', 'john@example.com', '1234');
+```
+
+#### Sélectionner notre utilisateur
+
+```sql
+SELECT * FROM users WHERE email = 'john@example.com';
+```
 
 ---
