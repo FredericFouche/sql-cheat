@@ -116,6 +116,11 @@ async function getUsers() {
 }
 ```
 
-Async et await seront utilisés pour créer des fonctions asynchrones. Les fonctions asynchrones sont des fonctions qui peuvent être suspendues et reprises plus tard. Elles permettent d'attendre des opérations asynchrones comme les requêtes de bdd qui peuvent prendre du temps.
-Await permet d'attendre la résolution d'une promesse. Une promesse est un objet qui représente la résolution ou le rejet éventuel d'une opération asynchrone. Await ne peut être utilisé que dans les fonctions asynchrones.
-Il est courant d'utiliser await devant une promesse qui renvoie le résultat d'une requête de base de données.
+**_Précisions_**:
+
+- **Async** et **await** seront utilisés pour créer des fonctions **asynchrones**. Les fonctions asynchrones sont des fonctions qui peuvent être suspendues et reprises plus tard. Elles permettent d'attendre des opérations asynchrones comme les requêtes de bdd qui peuvent prendre du temps.
+
+- **Await** permet d'attendre la résolution d'une **promesse**. Une **promesse** est un objet qui représente la résolution ou le rejet éventuel d'une opération asynchrone. **Await** ne peut être utilisé que dans les fonctions asynchrones.
+  Il est courant d'utiliser **await** devant une **promesse** qui renvoie le résultat d'une requête de base de données.
+
+- La structure **try et catch**, permet de gérer les erreurs. Le code à l'intérieur du bloc try sera exécuté, si une erreur se produit, le bloc catch sera exécuté. Le try et catch **doit** être utilisé avec les fonctions asynchrones.
