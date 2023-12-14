@@ -301,6 +301,25 @@ INSERT INTO clients (name, email, password) VALUES ('John', 'john@example.com', 
 SELECT * FROM clients WHERE email = 'john@example.com';
 ```
 
+#### IF EXISTS/IF NOT EXISTS
+
+Les mots-clés `IF EXISTS` et `IF NOT EXISTS` permettent de vérifier si une table existe avant de la créer ou de la supprimer.
+
+```sql
+-- Créer une table clients si elle n'existe pas
+CREATE TABLE IF NOT EXISTS clients (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+```
+
+```sql
+-- Supprimer la table clients si elle existe
+DROP TABLE IF EXISTS clients;
+```
+
 </br >
 
 ---
