@@ -1,18 +1,18 @@
 # sql-cheat
 
-## Qu'est-ce qu'une base de données ?
+### Qu'est-ce qu'une base de données ?
 
 Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données. Les bases de données peuvent être utilisées pour stocker des informations telles que des données client, des données de vente, des informations sur les produits, des données financières et bien plus encore.
 
-## L'organisation des bases de données
+### L'organisation des bases de données
 
 Les bases de données sont généralement organisées en tables. Une table est composée de lignes et de colonnes. Les colonnes contiennent les noms des champs et définissent le type de données qui seront stockées dans le champ. Les lignes contiennent les enregistrements ou les données pour les colonnes spécifiées.
 
-## Les types de bases de données
+### Les types de bases de données
 
 Il existe plusieurs types de bases de données, mais les plus courants sont les bases de données relationnelles et les bases de données non relationnelles. Les bases de données relationnelles stockent les données dans des tables qui sont liées les unes aux autres par des clés. Les bases de données non relationnelles stockent les données dans des documents, des graphiques, des clés et des paires de valeurs ou des colonnes.
 
-## Les langages de bases de données
+### Les langages de bases de données
 
 Les bases de données sont généralement contrôlées à l'aide d'un langage de base de données. Les langages de base de données les plus courants sont SQL et NoSQL. SQL est un langage de base de données relationnelle qui est utilisé pour manipuler et récupérer des données dans des bases de données relationnelles. NoSQL est un langage de base de données non relationnel qui est utilisé pour manipuler et récupérer des données dans des bases de données non relationnelles.
 
@@ -58,3 +58,46 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 - `HAVING` - permet de spécifier des critères de sélection pour les groupes. Exemple: `SELECT COUNT(*) FROM users GROUP BY country HAVING COUNT(*) > 10;`
 - `LIMIT` - permet de limiter le nombre de résultats retournés. Exemple: `SELECT * FROM users LIMIT 10;`
 - `OFFSET` - permet de spécifier le nombre de lignes à ignorer avant de commencer à renvoyer les résultats. Exemple: `SELECT * FROM users LIMIT 10 OFFSET 10;`
+
+## Initialiser une base de données avec PostgreSQL dans Node.js
+
+### Installation de PostgreSQL
+
+- Télécharger et installer PostgreSQL: https://www.postgresql.org/download/
+- créer un utilisateur et un mot de passe pour PostgreSQL
+
+### Initialiser une base de données avec PostgreSQL dans Node.js
+
+- Installer le module `pg` avec npm: `npm install pg`
+- Créer un fichier `database.js` et y ajouter le code suivant:
+
+```js
+const { Client } = require('pg');
+```
+
+- Créer une nouvelle instance de client:
+
+```js
+const client = new Client({
+  user: 'VOTRE_UTILISATEUR',
+  host: 'VOTRE_HOST',
+  database: 'VOTRE_DATABASE',
+  password: 'VOTRE_MOT_DE_PASSE',
+  port: LE_PORT_DE_VOTRE_DATABASE,
+});
+```
+
+- Connecter le client à la base de données:
+
+```js
+client.connect();
+```
+
+- Exécuter une requête SQL:
+
+```js
+client.query('SELECT * FROM users', (err, res) => {
+  console.log(err, res);
+  client.end();
+});
+```
