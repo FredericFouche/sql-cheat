@@ -326,7 +326,11 @@ CREATE TABLE clients (
 #### Insérer des données dans la table users
 
 ```sql
-INSERT INTO clients (name, email, password) VALUES ('John', 'john@example.com', '1234');
+INSERT INTO clients (name, email, password) VALUES
+('John', 'john@example.com', '1234'),
+('Jane', 'jane@example.com', '4567'),
+('Bob', 'Bob@example.com', '8910'),
+('Alice', 'Alice@example.com', '1112');
 ```
 
 </br >
@@ -353,11 +357,33 @@ CREATE TABLE IF NOT EXISTS clients (
 );
 ```
 
-</br >
-
 ```sql
 -- Supprimer la table clients si elle existe
 DROP TABLE IF EXISTS clients;
+```
+
+</br >
+
+#### POSTGRESQL SERIAL PRIMARY KEY
+
+Le type de données `SERIAL` est utilisé pour générer automatiquement des valeurs numériques uniques. Il est généralement utilisé pour les clés primaires. C'est un entier auto-incrémenté.
+
+</br >
+
+#### REFERENCES
+
+Le mot-clé `REFERENCES` permet de créer une clé étrangère. Une clé étrangère est une colonne ou un groupe de colonnes dans une table qui fait référence à une colonne ou un groupe de colonnes dans une autre table.
+
+```sql
+-- Créer une table orders
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  product_id INT,
+  -- INT est un type de données qui permet de stocker des nombres entiers.
+  FOREIGN KEY(product_id) REFERENCES products(id)
+  -- FOREIGN KEY indique que le champ est une clé étrangère.
+  -- REFERENCES indique la table et la colonne à laquelle la clé étrangère fait référence.
+);
 ```
 
 </br >
@@ -384,6 +410,7 @@ SQL utilise des données très structurées. Il faut donc spécifier le type de 
 | `BOOLEAN`       | Permet de spécifier une valeur booléenne.                                                                                  |
 | `TEXT`          | Permet de spécifier un texte.                                                                                              |
 | `ARRAY`         | Permet de spécifier un tableau.                                                                                            |
+| `SERIAL`        | Permet de générer des entiers auto-incrémentés                                                                             |
 
 </br >
 
