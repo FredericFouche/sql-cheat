@@ -144,7 +144,7 @@ async function getUsers() {
 }
 ```
 
-**_Précisions_**:
+**_Précisions:_**
 
 - **Async** et **await** seront utilisés pour créer des fonctions **asynchrones**. Les fonctions asynchrones sont des fonctions qui peuvent être suspendues et reprises plus tard. Elles permettent d'attendre des opérations asynchrones comme les requêtes de bdd qui peuvent prendre du temps.
 
@@ -152,3 +152,11 @@ async function getUsers() {
   Il est courant d'utiliser **await** devant une **promesse** qui renvoie le résultat d'une requête de base de données.
 
 - La structure **try et catch**, permet de gérer les erreurs. Le code à l'intérieur du bloc try sera exécuté, si une erreur se produit, le bloc catch sera exécuté. Le try et catch **doit** être utilisé avec les fonctions asynchrones.
+
+**_Les commandes node pour faire des requêtes SQL:_**
+
+- query() - permet d'exécuter une requête SQL. Exemple: `client.query('SELECT * FROM "users";');`
+- connect() - permet de connecter le client à la base de données. Exemple: `client.connect();`
+- end() - permet de terminer la connexion avec la base de données. Exemple: `client.end();`
+
+---
