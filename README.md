@@ -194,3 +194,13 @@ DROP USER trombi;
 ```sql
 psql -d exemple -U trombi
 ```
+
+Expliquons cette commande:
+
+- `psql` - permet de se connecter à une base de données PostgreSQL.
+- `-d` - permet de spécifier la base de données à laquelle se connecter.
+- `exemple` - est le nom de la base de données.
+- `-U` - permet de spécifier l'utilisateur avec lequel se connecter.
+- `trombi` - est le nom de l'utilisateur.
+
+---
