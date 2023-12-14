@@ -407,13 +407,16 @@ SQL utilise des données très structurées. Il faut donc spécifier le type de 
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `VARCHAR(taille)` | Permet de spécifier une chaîne de caractères de taille variable. La taille maximale est spécifiée dans les parenthèses.    |
 | `CHAR(taille)`    | Permet de spécifier une chaîne de caractères de taille fixe. La taille maximale est spécifiée dans les parenthèses.        |
+| `DOUBLE`          | Permet de spécifier un double.                                                                                             |
 | `INT`             | Permet de spécifier un nombre entier.                                                                                      |
 | `SMALLINT`        | Permet de spécifier un nombre entier plus petit.                                                                           |
 | `BIGINT`          | Permet de spécifier un nombre entier plus grand.                                                                           |
 | `DECIMAL(s, d)`   | Permet de spécifier un nombre décimal. Le paramètre `s` est le nombre total de chiffres et `d` est le nombre de décimales. |
 | `DATE`            | Permet de spécifier une date.                                                                                              |
+| `TIME`            | Permet de spécifier une heure.                                                                                             |
 | `DATETIME`        | Permet de spécifier une date et une heure.                                                                                 |
 | `TIMESTAMP`       | Permet de spécifier une date et une heure.                                                                                 |
+| `TIMESTAMPZ`      | Permet de spécifier une date et une heure avec une timezone.                                                               |
 | `BOOLEAN`         | Permet de spécifier une valeur booléenne.                                                                                  |
 | `TEXT`            | Permet de spécifier un texte.                                                                                              |
 | `ARRAY`           | Permet de spécifier un tableau.                                                                                            |
