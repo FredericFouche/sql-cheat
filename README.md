@@ -4,6 +4,8 @@
 
 Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données. Les bases de données peuvent être utilisées pour stocker des informations telles que des données client, des données de vente, des informations sur les produits, des données financières et bien plus encore.
 
+</br >
+
 ### L'organisation des bases de données
 
 Les bases de données sont généralement organisées en tables. Une table est composée de lignes et de colonnes. Les colonnes contiennent les noms des champs et définissent le type de données qui seront stockées dans le champ. Les lignes contiennent les enregistrements ou les données pour les colonnes spécifiées.
@@ -62,6 +64,8 @@ Les bases de données sont généralement organisées en tables. Une table est c
 
 Il existe plusieurs types de bases de données, mais les plus courants sont les bases de données relationnelles et les bases de données non relationnelles. Les bases de données relationnelles stockent les données dans des tables qui sont liées les unes aux autres par des clés. Les bases de données non relationnelles stockent les données dans des documents, des graphiques, des clés et des paires de valeurs ou des colonnes.
 
+</br >
+
 ### Les langages de bases de données
 
 Les bases de données sont généralement contrôlées à l'aide d'un langage de base de données. Les langages de base de données les plus courants sont SQL et NoSQL. SQL est un langage de base de données relationnelle qui est utilisé pour manipuler et récupérer des données dans des bases de données relationnelles. NoSQL est un langage de base de données non relationnel qui est utilisé pour manipuler et récupérer des données dans des bases de données non relationnelles.
@@ -88,6 +92,8 @@ Les éléments suivants sont utilisés pour créer un MCD:
 - Identifier les relations entre les entités et les nommer par un verbe à l’infinitif.
 - Définir les cardinalités.
 
+</br >
+
 ### Le Modèle Logique de Données (MLD)
 
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
@@ -102,6 +108,8 @@ Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de b
 
 Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieurs catégories: les commandes de manipulation des champs, les commandes de base de données, les commandes de manipulation de table, les commandes de contraintes, les commandes de requête et les commandes de requête avancées.
 
+</br >
+
 ### SQL Commandes de manipulation des champs
 
 - `SELECT` - permet de selectionner des données dans une base de données. Exemple: `SELECT * FROM users;`
@@ -109,10 +117,14 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `DELETE` - permet de supprimer des données dans une base de données. Exemple: `DELETE FROM users WHERE id = 1;`
 - `INSERT INTO` - permet d'insérer de nouvelles données dans une base de données. Exemple: `INSERT INTO users (name) VALUES ('John');`
 
+</br >
+
 ### SQL Commandes de base de données
 
 - `CREATE DATABASE` - permet de créer une nouvelle base de données. Exemple: `CREATE DATABASE my_database;`
 - `ALTER DATABASE` - permet de modifier une base de données. Exemple: `ALTER DATABASE my_database RENAME TO your_database;`
+
+</br >
 
 ### SQL Commandes de manipulation de table
 
@@ -120,12 +132,16 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `ALTER TABLE` - permet de modifier une table. Exemple: `ALTER TABLE users ADD email VARCHAR(255);`
 - `DROP TABLE` - permet de supprimer une table. Exemple: `DROP TABLE users;`
 
+</br >
+
 ### SQL Commandes de contraintes
 
 - `NOT NULL` - indique que le champ ne peut pas être NULL. Exemple: `CREATE TABLE users (id INT NOT NULL, name VARCHAR(255) NOT NULL);`
 - `UNIQUE` - indique que les valeurs de champ doivent être uniques. Exemple: `CREATE TABLE users (id INT UNIQUE, name VARCHAR(255) UNIQUE);`
 - `PRIMARY KEY` - indique que le champ est une clé primaire. Exemple: `CREATE TABLE users (id INT NOT NULL PRIMARY KEY, name VARCHAR(255));`
 - `FOREIGN KEY` - indique que le champ est une clé étrangère. Exemple: `CREATE TABLE orders (id INT NOT NULL, product_id INT, PRIMARY KEY(id), FOREIGN KEY(product_id) REFERENCES products(id));`
+
+</br >
 
 ### SQL Commandes de requête
 
@@ -135,6 +151,8 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `ORDER BY` - permet de trier les résultats par ordre croissant ou décroissant. Exemple: `SELECT * FROM users ORDER BY name ASC;`
 - `ASC` - permet de trier les résultats par ordre croissant. Exemple: `SELECT * FROM users ORDER BY name ASC;`
 - `DESC` - permet de trier les résultats par ordre décroissant. Exemple: `SELECT * FROM users ORDER BY name DESC;`
+
+</br >
 
 ### SQL Commandes de requête avancées
 
@@ -151,10 +169,14 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 
 ## Initialiser une base de données avec PostgreSQL dans Node.js
 
+</br >
+
 ### Installation de PostgreSQL
 
 - Télécharger et installer PostgreSQL: https://www.postgresql.org/download/
 - créer un utilisateur et un mot de passe pour PostgreSQL
+
+</br >
 
 ### Initialiser une base de données avec PostgreSQL dans Node.js
 
@@ -206,6 +228,8 @@ async function getUsers() {
 }
 ```
 
+</br >
+
 **_Précisions:_**
 
 - **Async** et **await** seront utilisés pour créer des fonctions **asynchrones**. Les fonctions asynchrones sont des fonctions qui peuvent être suspendues et reprises plus tard. Elles permettent d'attendre des opérations asynchrones comme les requêtes de bdd qui peuvent prendre du temps.
@@ -214,6 +238,8 @@ async function getUsers() {
   Il est courant d'utiliser **await** devant une **promesse** qui renvoie le résultat d'une requête de base de données.
 
 - La structure **try et catch**, permet de gérer les erreurs. Le code à l'intérieur du bloc try sera exécuté, si une erreur se produit, le bloc catch sera exécuté. Le try et catch **doit** être utilisé avec les fonctions asynchrones.
+
+</br >
 
 **_Les commandes node pour faire des requêtes SQL:_**
 
@@ -232,6 +258,8 @@ async function getUsers() {
 ### Gestion des utilisateurs
 
 #### Créer un utilisateur sur une base de données PostgreSQL
+
+</br >
 
 - Pour créer l'utilisateur `trombi` sur la base de données `exemple` avec le mot de passe `1234`, exécuter la commande suivante:
 
@@ -257,6 +285,8 @@ DROP DATABASE exemple;
 DROP USER trombi;
 ```
 
+</br >
+
 #### Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:
 
 ```sql
@@ -270,6 +300,8 @@ Expliquons cette commande:
 - `exemple` - est le nom de la base de données.
 - `-U` - permet de spécifier l'utilisateur avec lequel se connecter.
 - `trombi` - est le nom de l'utilisateur.
+
+</br >
 
 #### Créer une table
 
@@ -289,17 +321,23 @@ CREATE TABLE clients (
 );
 ```
 
+</br >
+
 #### Insérer des données dans la table users
 
 ```sql
 INSERT INTO clients (name, email, password) VALUES ('John', 'john@example.com', '1234');
 ```
 
+</br >
+
 #### Sélectionner notre utilisateur
 
 ```sql
 SELECT * FROM clients WHERE email = 'john@example.com';
 ```
+
+</br >
 
 #### IF EXISTS/IF NOT EXISTS
 
