@@ -410,7 +410,7 @@ SQL utilise des données très structurées. Il faut donc spécifier le type de 
 | `BOOLEAN`       | Permet de spécifier une valeur booléenne.                                                                                  |
 | `TEXT`          | Permet de spécifier un texte.                                                                                              |
 | `ARRAY`         | Permet de spécifier un tableau.                                                                                            |
-| `SERIAL`        | Permet de générer des entiers auto-incrémentés                                                                             |
+| `SERIAL`        | Permet de générer des entiers auto-incrémentés (usage = ID)                                                                |
 
 </br >
 
