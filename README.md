@@ -111,7 +111,7 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 **CRUD** est un acronyme qui signifie Create, Read, Update et Delete. Il est utilisé pour décrire les opérations de base de la base de données.
 
 - `CREATE` - permet de créer de nouvelles données dans une base de données.
-- `READ` - permet de lire des données dans une base de données.
+- `READ` - commande `SELECT` en sql permet de lire des données dans une base de données.
 - `UPDATE` - permet de mettre à jour des données dans une base de données.
 - `DELETE` - permet de supprimer des données dans une base de données.
 
