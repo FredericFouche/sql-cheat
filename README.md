@@ -16,7 +16,33 @@ Il existe plusieurs types de bases de données, mais les plus courants sont les 
 
 Les bases de données sont généralement contrôlées à l'aide d'un langage de base de données. Les langages de base de données les plus courants sont SQL et NoSQL. SQL est un langage de base de données relationnelle qui est utilisé pour manipuler et récupérer des données dans des bases de données relationnelles. NoSQL est un langage de base de données non relationnel qui est utilisé pour manipuler et récupérer des données dans des bases de données non relationnelles.
 
+---
+
+## La conception d'une base de données
+
+### Le Modèle Conceptuel de Données (MCD)
+
+En MCD, on ne parle pas de base de données directement, mais d'une **_abstraction_**.
+
+Le Modèle Conceptuel de Données (MCD) est un modèle de données qui permet de représenter les données d'une manière **_abstraite_**. Il est utilisé pour décrire les données et les relations entre les données. Il est généralement utilisé pour la conception de bases de données relationnelles.
+
+Les éléments suivants sont utilisés pour créer un MCD:
+
+- Dessiner nos entités.
+- Répartir leurs attributs.
+- Définir un ou plusieurs déterminant (ou discriminant). On parle de clé primaire uniquement quand on parle de la base de données.
+- Identifier les relations entre les entités et les nommer par un verbe à l’infinitif.
+- Définir les cardinalités.
+
+### Le Modèle Logique de Données (MLD)
+
+Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
+
+---
+
 ## Les commandes de base de SQL
+
+Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieurs catégories: les commandes de manipulation des champs, les commandes de base de données, les commandes de manipulation de table, les commandes de contraintes, les commandes de requête et les commandes de requête avancées.
 
 ### SQL Commandes de manipulation des champs
 
@@ -58,6 +84,8 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 - `HAVING` - permet de spécifier des critères de sélection pour les groupes. Exemple: `SELECT COUNT(*) FROM users GROUP BY country HAVING COUNT(*) > 10;`
 - `LIMIT` - permet de limiter le nombre de résultats retournés. Exemple: `SELECT * FROM users LIMIT 10;`
 - `OFFSET` - permet de spécifier le nombre de lignes à ignorer avant de commencer à renvoyer les résultats. Exemple: `SELECT * FROM users LIMIT 10 OFFSET 10;`
+
+---
 
 ## Initialiser une base de données avec PostgreSQL dans Node.js
 
