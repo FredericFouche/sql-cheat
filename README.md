@@ -1,6 +1,6 @@
 # sql-cheat
 
-### Qu'est-ce qu'une base de données ?
+## Qu'est-ce qu'une base de données ?
 
 Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données. Les bases de données peuvent être utilisées pour stocker des informations telles que des données client, des données de vente, des informations sur les produits, des données financières et bien plus encore.
 
@@ -167,6 +167,35 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `HAVING` - permet de spécifier des critères de sélection pour les groupes. Exemple: `SELECT COUNT(*) FROM users GROUP BY country HAVING COUNT(*) > 10;`
 - `LIMIT` - permet de limiter le nombre de résultats retournés. Exemple: `SELECT * FROM users LIMIT 10;`
 - `OFFSET` - permet de spécifier le nombre de lignes à ignorer avant de commencer à renvoyer les résultats. Exemple: `SELECT * FROM users LIMIT 10 OFFSET 10;`
+
+</br >
+
+---
+
+</br >
+
+### Les types de données en SQL
+
+SQL utilise des données très structurées. Il faut donc spécifier le type de données de chaque colonne lors de la création d'une table. Les types de données les plus courants sont les suivants:
+
+| Type de Donnée    | Description                                                                                                                |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `VARCHAR(taille)` | Permet de spécifier une chaîne de caractères de taille variable. La taille maximale est spécifiée dans les parenthèses.    |
+| `CHAR(taille)`    | Permet de spécifier une chaîne de caractères de taille fixe. La taille maximale est spécifiée dans les parenthèses.        |
+| `DOUBLE`          | Permet de spécifier un double.                                                                                             |
+| `INT`             | Permet de spécifier un nombre entier.                                                                                      |
+| `SMALLINT`        | Permet de spécifier un nombre entier plus petit.                                                                           |
+| `BIGINT`          | Permet de spécifier un nombre entier plus grand.                                                                           |
+| `DECIMAL(s, d)`   | Permet de spécifier un nombre décimal. Le paramètre `s` est le nombre total de chiffres et `d` est le nombre de décimales. |
+| `DATE`            | Permet de spécifier une date.                                                                                              |
+| `TIME`            | Permet de spécifier une heure.                                                                                             |
+| `DATETIME`        | Permet de spécifier une date et une heure.                                                                                 |
+| `TIMESTAMP`       | Permet de spécifier une date et une heure.                                                                                 |
+| `TIMESTAMPZ`      | Permet de spécifier une date et une heure avec une timezone.                                                               |
+| `BOOLEAN`         | Permet de spécifier une valeur booléenne.                                                                                  |
+| `TEXT`            | Permet de spécifier un texte.                                                                                              |
+| `ARRAY`           | Permet de spécifier un tableau.                                                                                            |
+| `SERIAL`          | Permet de générer des entiers auto-incrémentés (usage = ID)                                                                |
 
 </br >
 
@@ -392,38 +421,3 @@ CREATE TABLE orders (
   -- REFERENCES indique la table et la colonne à laquelle la clé étrangère fait référence.
 );
 ```
-
-</br >
-
----
-
-</br >
-
-### Les types de données en SQL
-
-SQL utilise des données très structurées. Il faut donc spécifier le type de données de chaque colonne lors de la création d'une table. Les types de données les plus courants sont les suivants:
-
-| Type de Donnée    | Description                                                                                                                |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `VARCHAR(taille)` | Permet de spécifier une chaîne de caractères de taille variable. La taille maximale est spécifiée dans les parenthèses.    |
-| `CHAR(taille)`    | Permet de spécifier une chaîne de caractères de taille fixe. La taille maximale est spécifiée dans les parenthèses.        |
-| `DOUBLE`          | Permet de spécifier un double.                                                                                             |
-| `INT`             | Permet de spécifier un nombre entier.                                                                                      |
-| `SMALLINT`        | Permet de spécifier un nombre entier plus petit.                                                                           |
-| `BIGINT`          | Permet de spécifier un nombre entier plus grand.                                                                           |
-| `DECIMAL(s, d)`   | Permet de spécifier un nombre décimal. Le paramètre `s` est le nombre total de chiffres et `d` est le nombre de décimales. |
-| `DATE`            | Permet de spécifier une date.                                                                                              |
-| `TIME`            | Permet de spécifier une heure.                                                                                             |
-| `DATETIME`        | Permet de spécifier une date et une heure.                                                                                 |
-| `TIMESTAMP`       | Permet de spécifier une date et une heure.                                                                                 |
-| `TIMESTAMPZ`      | Permet de spécifier une date et une heure avec une timezone.                                                               |
-| `BOOLEAN`         | Permet de spécifier une valeur booléenne.                                                                                  |
-| `TEXT`            | Permet de spécifier un texte.                                                                                              |
-| `ARRAY`           | Permet de spécifier un tableau.                                                                                            |
-| `SERIAL`          | Permet de générer des entiers auto-incrémentés (usage = ID)                                                                |
-
-</br >
-
----
-
-</br >
