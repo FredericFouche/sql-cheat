@@ -2,7 +2,9 @@
 
 Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de base de SQL, des exemples d'usage de SQL et des informations sur les bases de données.
 
-## Sommaire
+# Sommaire
+
+## Partie I : Fondements des Bases de Données
 
 ### [1. Qu'est-ce qu'une base de données ?](#1-quest-ce-quune-base-de-données)
 
@@ -22,6 +24,8 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [Les cardinalités](#les-cardinalités)
 - [ORM](#orm)
 
+## Partie II : SQL et Manipulation des Données
+
 ### [4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
 
 - [Le data mapper](#le-data-mapper)
@@ -40,6 +44,8 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [POSTGRESQL SERIAL PRIMARY KEY](#postgresql-serial-primary-key)
 - [REFERENCES](#references)
 
+## Partie III : Mise en Pratique avec PostgreSQL et Node.js
+
 ### [6. Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
 
 - [Installation de PostgreSQL](#installation-de-postgresql)
@@ -54,6 +60,8 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
   - [Créer une table](#créer-une-table)
   - [Insérer des données dans la table users](#insérer-des-données-dans-la-table-users)
   - [Sélectionner notre utilisateur](#sélectionner-notre-utilisateur)
+
+## Partie IV : Outils et Sécurité
 
 ### [8. Les Outils](#8-les-outils)
 
