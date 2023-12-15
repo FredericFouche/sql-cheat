@@ -6,18 +6,18 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 ## Partie I : Fondements des Bases de Données
 
-### [1. Qu'est-ce qu'une base de données ?](#1-quest-ce-quune-base-de-données)
+### [Qu'est-ce qu'une base de données ?](#1-quest-ce-quune-base-de-données)
 
 - [L'organisation des bases de données](#lorganisation-des-bases-de-données)
 - [Les types de bases de données](#les-types-de-bases-de-données)
 - [Les langages de bases de données](#les-langages-de-bases-de-données)
 
-### [2. La conception d'une base de données](#2-la-conception-dune-base-de-données)
+### [La conception d'une base de données](#2-la-conception-dune-base-de-données)
 
 - [Le Modèle Conceptuel de Données (MCD)](#le-modèle-conceptuel-de-données-mcd)
 - [Le Modèle Logique de Données (MLD)](#le-modèle-logique-de-données-mld)
 
-### [3. Les notions de base](#3-les-notions-de-base)
+### [Les notions de base](#3-les-notions-de-base)
 
 - [Les clés primaires](#les-clés-primaires)
 - [Les clés étrangères](#les-clés-étrangères)
@@ -26,12 +26,12 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 ## Partie II : SQL et Manipulation des Données
 
-### [4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
+### [Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
 
 - [Le data mapper](#le-data-mapper)
 - [L'active record](#lactive-record)
 
-### [5. Les commandes de base de SQL](#5-les-commandes-de-base-de-sql)
+### [Les commandes de base de SQL](#5-les-commandes-de-base-de-sql)
 
 - [SQL Commandes de manipulation des lignes](#sql-commandes-de-manipulation-des-lignes)
 - [SQL Commandes de base de données](#sql-commandes-de-base-de-données)
@@ -46,12 +46,12 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 ## Partie III : Mise en Pratique avec PostgreSQL et Node.js
 
-### [6. Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
+### [Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
 
 - [Installation de PostgreSQL](#installation-de-postgresql)
 - [Initialiser une base de données avec PostgreSQL dans Node.js](#initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
 
-### [7. Quelques exemples d'usage de SQL](#7-quelques-exemples-dusage-de-sql)
+### [Quelques exemples d'usage de SQL](#7-quelques-exemples-dusage-de-sql)
 
 - [Gestion des utilisateurs](#gestion-des-utilisateurs)
 
@@ -63,12 +63,12 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 ## Partie IV : Outils et Sécurité
 
-### [8. Les Outils](#8-les-outils)
+### [Les Outils](#8-les-outils)
 
 - [TablePlus](#tableplus)
 - [pgAdmin](#pgadmin)
 
-### [9. La sécurité](#9-la-sécurité)
+### [La sécurité](#9-la-sécurité)
 
 - [Les injections SQL](#les-injections-sql)
 
@@ -266,45 +266,106 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 
 ### SQL Commandes de manipulation des lignes
 
-- `SELECT` - permet de selectionner des données dans une base de données. Exemple: `SELECT * FROM users;`
-- `UPDATE` - permet de mettre à jour des données dans une base de données. Exemple: `UPDATE users SET name = 'John' WHERE id = 1;`
-- `DELETE` - permet de supprimer des données dans une base de données. Exemple: `DELETE FROM users WHERE id = 1;`
-- `INSERT INTO` - permet d'insérer de nouvelles données dans une base de données. Exemple: `INSERT INTO users (name) VALUES ('John');`
+- `SELECT` - permet de selectionner des données dans une base de données.
+- `UPDATE` - permet de mettre à jour des données dans une base de données.
+- `DELETE` - permet de supprimer des données dans une base de données.
+- `INSERT INTO` - permet d'insérer de nouvelles données dans une base de données.
+
+Exemple:
+
+```sql
+SELECT * FROM users;
+UPDATE users SET name = 'John' WHERE id = 1;
+DELETE FROM users WHERE id = 1;
+INSERT INTO users (name, email, password) VALUES
+('John', 'John@example.com', '1234');
+```
 
 ### SQL Commandes de base de données
 
-- `CREATE DATABASE` - permet de créer une nouvelle base de données. Exemple: `CREATE DATABASE my_database;`
-- `ALTER DATABASE` - permet de modifier une base de données. Exemple: `ALTER DATABASE my_database RENAME TO your_database;`
+- `CREATE DATABASE` - permet de créer une nouvelle base de données.
+- `ALTER DATABASE` - permet de modifier une base de données.
+
+Exemple:
+
+```sql
+-- Créer une base de données
+CREATE DATABASE example;
+-- Modifier une base de données
+ALTER DATABASE example RENAME TO example2;
+```
 
 ### SQL Commandes de manipulation de table
 
-- `CREATE TABLE` - permet de créer une nouvelle table. Exemple: `CREATE TABLE users (id INT, name VARCHAR(255));`
-- `ALTER TABLE` - permet de modifier une table. Exemple: `ALTER TABLE users ADD email VARCHAR(255);`
-- `DROP TABLE` - permet de supprimer une table. Exemple: `DROP TABLE users;`
+- `CREATE TABLE` - permet de créer une nouvelle table.
+- `ALTER TABLE` - permet de modifier une table.
+- `DROP TABLE` - permet de supprimer une table.
+
+Exemple:
+
+```sql
+-- Créer une table users
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL);
+-- modifier la table users
+ALTER TABLE users ADD email VARCHAR(255) NOT NULL UNIQUE;
+-- Supprimer la table users
+DROP TABLE users;
+```
 
 ### SQL Commandes de contraintes
 
-- `NOT NULL` - indique que le champ ne peut pas être NULL. Exemple: `CREATE TABLE users (id INT NOT NULL, name VARCHAR(255) NOT NULL);`
-- `UNIQUE` - indique que les valeurs de champ doivent être uniques. Exemple: `CREATE TABLE users (id INT UNIQUE, name VARCHAR(255) UNIQUE);`
-- `PRIMARY KEY` - indique que le champ est une clé primaire. Exemple: `CREATE TABLE users (id INT NOT NULL PRIMARY KEY, name VARCHAR(255));`
-- `FOREIGN KEY` - indique que le champ est une clé étrangère. Exemple: `CREATE TABLE orders (id INT NOT NULL, product_id INT, PRIMARY KEY(id), FOREIGN KEY(product_id) REFERENCES products(id));`
-- `REFERENCES` - indique la table et la colonne à laquelle la clé étrangère fait référence. Exemple: `CREATE TABLE orders (id INT NOT NULL, product_id INT, PRIMARY KEY(id), FOREIGN KEY(product_id) REFERENCES products(id));`
+- `NOT NULL` - indique que le champ ne peut pas être NULL.
+- `UNIQUE` - indique que les valeurs de champ doivent être uniques.
+- `PRIMARY KEY` - indique que le champ est une clé primaire.
+- `FOREIGN KEY` - indique que le champ est une clé étrangère.
+- `REFERENCES` - indique la table et la colonne à laquelle la clé étrangère fait référence.
+
+Exemple:
+
+```sql
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  product_id INT UNIQUE NOT NULL,
+  FOREIGN KEY(product_id) REFERENCES products(id)
+);
+```
 
 ### SQL Commandes de requête
 
-- `WHERE` - permet de spécifier des critères de sélection. Exemple: `SELECT * FROM users WHERE country = 'France';`
-- `LIKE` - permet de rechercher un motif dans une colonne. Exemple: `SELECT * FROM users WHERE name LIKE 'A%';`
-- `ILIKE` - permet de rechercher un motif dans une colonne sans tenir compte de la casse. Exemple: `SELECT * FROM users WHERE name ILIKE 'a%';`
-- `ORDER BY` - permet de trier les résultats par ordre croissant ou décroissant. Exemple: `SELECT * FROM users ORDER BY name ASC;`
-- `ASC` - permet de trier les résultats par ordre croissant. Exemple: `SELECT * FROM users ORDER BY name ASC;`
-- `DESC` - permet de trier les résultats par ordre décroissant. Exemple: `SELECT * FROM users ORDER BY name DESC;`
+- `WHERE` - permet de spécifier des critères de sélection.
+- `LIKE` - permet de rechercher un motif dans une colonne.
+- `ILIKE` - permet de rechercher un motif dans une colonne sans tenir compte de la casse.
+- `ORDER BY` - permet de trier les résultats par ordre croissant ou décroissant.
+- `ASC` - permet de trier les résultats par ordre croissant.
+- `DESC` - permet de trier les résultats par ordre décroissant.
+
+Exemple:
+
+```sql
+SELECT * FROM users WHERE name = 'John';
+SELECT * FROM users WHERE name LIKE '%John%';
+SELECT * FROM users WHERE name ILIKE '%John%';
+SELECT * FROM users ORDER BY name ASC;
+SELECT * FROM users ORDER BY name DESC;
+```
 
 ### SQL Commandes de requête avancées
 
-- `GROUP BY` - permet de regrouper les résultats par une ou plusieurs colonnes. Exemple: `SELECT COUNT(*) FROM users GROUP BY country;`
-- `HAVING` - permet de spécifier des critères de sélection pour les groupes. Exemple: `SELECT COUNT(*) FROM users GROUP BY country HAVING COUNT(*) > 10;`
-- `LIMIT` - permet de limiter le nombre de résultats retournés. Exemple: `SELECT * FROM users LIMIT 10;`
-- `OFFSET` - permet de spécifier le nombre de lignes à ignorer avant de commencer à renvoyer les résultats. Exemple: `SELECT * FROM users LIMIT 10 OFFSET 10;`
+- `GROUP BY` - permet de regrouper les résultats par une ou plusieurs colonnes.
+- `HAVING` - permet de spécifier des critères de sélection pour les groupes.
+- `LIMIT` - permet de limiter le nombre de résultats retournés.
+- `OFFSET` - permet de spécifier le nombre de lignes à ignorer avant de commencer à renvoyer les résultats.
+
+Exemple:
+
+```sql
+SELECT * FROM users GROUP BY name;
+SELECT * FROM users HAVING name = 'John';
+SELECT * FROM users LIMIT 10;
+SELECT * FROM users OFFSET 10;
+```
 
 #### IF EXISTS/IF NOT EXISTS
 
