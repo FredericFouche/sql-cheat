@@ -201,6 +201,10 @@ Le Modèle dans le MVC est la partie de l'application qui gère les données. Il
 
 Dans le fichier models/, il y aura plusieurs fichier qui correspondent à chaque model métier de l'application. Par exemple, si nous avons une table `users` et une table `orders`, nous aurons un fichier `userModel.js` et un fichier `orderModel.js` dans le dossier models/. Ces fichiers contiendront les fonctions qui permettent de récupérer et de stocker des données dans la base de données pour chaque logique métier.
 
+Il faut bien utiliser les promesses et les fonctions asynchrones pour éviter de bloquer le serveur dans l'attente d'une réponse de la base de données. Il faut attendre que la promesse soit **Fullfilled**, soit **Rejected** si rejetée, soit **Pending** si elle est en attente.
+
+On n'utilise pas de try catch dans le modèle, on le fait dans le controller, ce n'est pas le but du modèle de gérer les erreurs.
+
 Il existe 2 design pattern principaux pour faire ça : le **_data mapper_** et l'**_active record_**.
 
 ### Le data mapper
@@ -253,8 +257,6 @@ const client = new Client(process.env.PG_URL);
 
 module.exports = client;
 ```
-
-Il faut bien utiliser les promesses et les fonctions asynchrones pour éviter de bloquer le serveur dans l'attente d'une réponse de la base de données. Il faut attendre que la promesse soit **Fullfilled**, soit **Rejected** si rejetée, soit **Pending** si elle est en attente.
 
 </br >
 
