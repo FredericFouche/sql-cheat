@@ -60,6 +60,12 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [TablePlus](#tableplus)
 - [pgAdmin](#pgadmin)
 
+[9. La sécurité](#9-la-sécurité)
+
+- [Les injections SQL](#les-injections-sql)
+
+</br >
+
 ## 1. Qu'est-ce qu'une base de données ?
 
 Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données.
@@ -502,6 +508,28 @@ async function getUsers() {
 
 </br >
 
+- then et catch:
+
+```js
+function getUsers() {
+  client
+    // On exécute la requête
+    .query('SELECT * FROM "users";')
+    // Si la requête est résolue, on récupère les données
+    .then((res) => console.log(res.rows))
+    // Si la requête est rejetée, on récupère l'erreur
+    .catch((err) => console.log(err.stack));
+}
+```
+
+</br >
+
+**_Précisions:_**
+
+- **then** et **catch** sont une autre façon de faire des requêtes asynchrones. **then** est utilisé pour récupérer les données si la requête est résolue. **catch** est utilisé pour récupérer l'erreur si la requête est rejetée.
+
+</br >
+
 **_Les commandes node pour faire des requêtes SQL:_**
 
 - query() - permet d'exécuter une requête SQL. Exemple: `client.query('SELECT * FROM "users";');`
@@ -615,5 +643,32 @@ TablePlus est un outil qui permet de gérer les bases de données en GUI. Il est
 ### pgAdmin
 
 pgAdmin est un outil qui permet de gérer les bases de données PostgreSQL en GUI. Il est disponible sur Mac, Windows et Linux.
+
+</br >
+
+## 9. La sécurité
+
+### Les injections SQL
+
+**_Très important pour le titre pro._**
+
+Pour éviter les injections SQL, dans le cadre d'une concaténation de chaînes de caractères, il faut utiliser des requêtes paramétrées/préparées, les données seront remplacées par des $1 et passeront en paramètre de la fonction query. $x permet de nettoyer les données.
+
+Exemple:
+
+```js
+const name = 'John';
+const email = 'John@example.com';
+const password = '1234';
+
+client.query(
+  'INSERT INTO clients (name, email, password) VALUES ($1, $2, $3)',
+  [name, email, password],
+  (err, res) => {
+    console.log(err, res);
+    client.end();
+  }
+);
+```
 
 </br >
