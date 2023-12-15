@@ -1,5 +1,7 @@
 # sql-cheat
 
+Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de base de SQL, des exemples d'usage de SQL et des informations sur les bases de données.
+
 ## Sommaire
 
 [1. Qu'est-ce qu'une base de données ?](#1-quest-ce-quune-base-de-données)
