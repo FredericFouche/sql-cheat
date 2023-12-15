@@ -64,8 +64,6 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 - [Les injections SQL](#les-injections-sql)
 
-</br >
-
 ## 1. Qu'est-ce qu'une base de données ?
 
 Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données.
@@ -73,13 +71,10 @@ Une base de données est un ensemble de données organisées de manière structu
 Les bases de données peuvent être utilisées pour stocker des informations telles que des données client, des données de vente, des informations sur les produits, des données financières et bien plus encore.
 
 L'intérêt d'utiliser une base de données, c'est d'avoir une single source of truth (source de vérité unique). Cela permet d'avoir une seule source de données qui est utilisée par plusieurs outils.
-</br >
 
 ### L'organisation des bases de données
 
 Les bases de données sont généralement organisées en tables. Une table est composée de lignes et de colonnes. Les colonnes contiennent les noms des champs et définissent le type de données qui seront stockées dans le champ. Les lignes contiennent les enregistrements ou les données pour les colonnes spécifiées.
-
-</br >
 
 **Schéma d'une base de données:**
 
@@ -126,9 +121,6 @@ Les bases de données sont généralement organisées en tables. Une table est c
   </li>
 </ul>
 
-</br >
-</br >
-
 une **table** ressemblera à ça:
 
 | id  | name  | email             |
@@ -138,23 +130,15 @@ une **table** ressemblera à ça:
 | 3   | Bob   | Bob@example.com   |
 | 4   | Alice | Alice@example.com |
 
-</br >
-
 ### Les types de bases de données
 
 Il existe plusieurs types de bases de données, mais les plus courants sont les bases de données relationnelles et les bases de données non relationnelles. Les bases de données relationnelles stockent les données dans des tables qui sont liées les unes aux autres par des clés. Les bases de données non relationnelles stockent les données dans des documents, des graphiques, des clés et des paires de valeurs ou des colonnes.
-
-</br >
 
 ### Les langages de bases de données
 
 Les bases de données sont généralement contrôlées à l'aide d'un langage de base de données. Les langages de base de données les plus courants sont SQL et NoSQL. SQL est un langage de base de données relationnelle qui est utilisé pour manipuler et récupérer des données dans des bases de données relationnelles. NoSQL est un langage de base de données non relationnel qui est utilisé pour manipuler et récupérer des données dans des bases de données non relationnelles.
 
-</br >
-
 ---
-
-</br >
 
 ## 2. La conception d'une base de données
 
@@ -172,17 +156,11 @@ Les éléments suivants sont utilisés pour créer un MCD:
 - Identifier les relations entre les entités et les nommer par un verbe à l’infinitif.
 - Définir les cardinalités.
 
-</br >
-
 ### Le Modèle Logique de Données (MLD)
 
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
 
-</br >
-
 ---
-
-</br >
 
 ## 3. Les notions de base
 
@@ -194,8 +172,6 @@ Les clés primaires sont un champ ou plusieurs qui caractérisent de manière un
 Généralement, on utilise un champ qui s'appelle `id` et qui est un entier auto-incrémenté.
 Cela peut aussi être un ensemble de champs qui forment une clé primaire composite.
 
-</br >
-
 ### Les clés étrangères
 
 Les clés étrangères sont des champs qui font référence à une clé primaire dans une autre table. Elles sont utilisées pour créer des **relations** entre nos données.
@@ -204,17 +180,11 @@ Par exemple, si nous avons une table `users` et une table `orders`, nous pouvons
 
 Cela permet de rajouter des contraintes sur les données. Par exemple, si nous supprimons un utilisateur, nous pouvons supprimer toutes les commandes associées à cet utilisateur. Cela permet également de s'assurer que les données sont cohérentes.
 
-</br >
-
 ### Les cardinalités
 
 Les cardinalités sont utilisées pour définir les relations entre les tables. Elles sont utilisées pour définir le nombre d'occurrences dans une table qui peuvent être associées à un seul enregistrement dans une autre table.
 
-</br >
-
 ### ORM
-
-</br >
 
 ## 4. Le Modèle dans le MVC
 
@@ -230,15 +200,9 @@ Il existe 2 design pattern principaux pour faire ça : le **_data mapper_** et l
 
 ### Le data mapper
 
-</br >
-
 > Ceci est un design pattern. Un design pattern est un patron de conception permettant de résoudre un problème récurrent. Il permet de résoudre un problème récurrent de manière optimale.
 
-</br >
-
 Un data mapper est une fonction qui va faire une requête et retourner les resultats. Sa structure dans un modèle orderModel.js serait la suivante :
-
-</br >
 
 ```js
 // Import du client pour se connecter à la base de données
@@ -261,11 +225,7 @@ const orderModel = {
 module.exports = orderModel;
 ```
 
-</br >
-
 Pour éviter de multiplier les connexions à la base de données, on crée un fichier client.js qui va se connecter à la base de données et exporter le client. Ce fichier sera importé dans les modèles :
-
-</br >
 
 ```js
 const { Client } = require('pg');
@@ -278,8 +238,6 @@ const client = new Client(process.env.PG_URL);
 
 module.exports = client;
 ```
-
-</br >
 
 ### L'active record
 
@@ -298,8 +256,6 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `UPDATE` - permet de mettre à jour des données dans une base de données.
 - `DELETE` - permet de supprimer des données dans une base de données.
 
-</br >
-
 ### SQL Commandes de manipulation des lignes
 
 - `SELECT` - permet de selectionner des données dans une base de données. Exemple: `SELECT * FROM users;`
@@ -307,22 +263,16 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `DELETE` - permet de supprimer des données dans une base de données. Exemple: `DELETE FROM users WHERE id = 1;`
 - `INSERT INTO` - permet d'insérer de nouvelles données dans une base de données. Exemple: `INSERT INTO users (name) VALUES ('John');`
 
-</br >
-
 ### SQL Commandes de base de données
 
 - `CREATE DATABASE` - permet de créer une nouvelle base de données. Exemple: `CREATE DATABASE my_database;`
 - `ALTER DATABASE` - permet de modifier une base de données. Exemple: `ALTER DATABASE my_database RENAME TO your_database;`
-
-</br >
 
 ### SQL Commandes de manipulation de table
 
 - `CREATE TABLE` - permet de créer une nouvelle table. Exemple: `CREATE TABLE users (id INT, name VARCHAR(255));`
 - `ALTER TABLE` - permet de modifier une table. Exemple: `ALTER TABLE users ADD email VARCHAR(255);`
 - `DROP TABLE` - permet de supprimer une table. Exemple: `DROP TABLE users;`
-
-</br >
 
 ### SQL Commandes de contraintes
 
@@ -331,8 +281,6 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `PRIMARY KEY` - indique que le champ est une clé primaire. Exemple: `CREATE TABLE users (id INT NOT NULL PRIMARY KEY, name VARCHAR(255));`
 - `FOREIGN KEY` - indique que le champ est une clé étrangère. Exemple: `CREATE TABLE orders (id INT NOT NULL, product_id INT, PRIMARY KEY(id), FOREIGN KEY(product_id) REFERENCES products(id));`
 - `REFERENCES` - indique la table et la colonne à laquelle la clé étrangère fait référence. Exemple: `CREATE TABLE orders (id INT NOT NULL, product_id INT, PRIMARY KEY(id), FOREIGN KEY(product_id) REFERENCES products(id));`
-
-</br >
 
 ### SQL Commandes de requête
 
@@ -343,16 +291,12 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 - `ASC` - permet de trier les résultats par ordre croissant. Exemple: `SELECT * FROM users ORDER BY name ASC;`
 - `DESC` - permet de trier les résultats par ordre décroissant. Exemple: `SELECT * FROM users ORDER BY name DESC;`
 
-</br >
-
 ### SQL Commandes de requête avancées
 
 - `GROUP BY` - permet de regrouper les résultats par une ou plusieurs colonnes. Exemple: `SELECT COUNT(*) FROM users GROUP BY country;`
 - `HAVING` - permet de spécifier des critères de sélection pour les groupes. Exemple: `SELECT COUNT(*) FROM users GROUP BY country HAVING COUNT(*) > 10;`
 - `LIMIT` - permet de limiter le nombre de résultats retournés. Exemple: `SELECT * FROM users LIMIT 10;`
 - `OFFSET` - permet de spécifier le nombre de lignes à ignorer avant de commencer à renvoyer les résultats. Exemple: `SELECT * FROM users LIMIT 10 OFFSET 10;`
-
-</br >
 
 #### IF EXISTS/IF NOT EXISTS
 
@@ -373,13 +317,9 @@ CREATE TABLE IF NOT EXISTS clients (
 DROP TABLE IF EXISTS clients;
 ```
 
-</br >
-
 #### POSTGRESQL SERIAL PRIMARY KEY
 
 Le type de données `SERIAL` est utilisé pour générer automatiquement des valeurs numériques uniques. Il est généralement utilisé pour les clés primaires. C'est un entier auto-incrémenté.
-
-</br >
 
 #### REFERENCES
 
@@ -397,11 +337,7 @@ CREATE TABLE orders (
 );
 ```
 
-</br >
-
 ---
-
-</br >
 
 ### Les types de données en SQL
 
@@ -426,22 +362,14 @@ SQL utilise des données très structurées. Il faut donc spécifier le type de 
 | `ARRAY`           | Permet de spécifier un tableau.                                                                                            |
 | `SERIAL`          | Permet de générer des entiers auto-incrémentés (usage = ID)                                                                |
 
-</br >
-
 ---
 
-</br >
-
 ## 6. Initialiser une base de données avec PostgreSQL dans Node.js
-
-</br >
 
 ### Installation de PostgreSQL
 
 - Télécharger et installer PostgreSQL: https://www.postgresql.org/download/
 - créer un utilisateur et un mot de passe pour PostgreSQL
-
-</br >
 
 ### Initialiser une base de données avec PostgreSQL dans Node.js
 
@@ -495,8 +423,6 @@ async function getUsers() {
 }
 ```
 
-</br >
-
 **_Précisions:_**
 
 - **Async** et **await** seront utilisés pour créer des fonctions **asynchrones**. Les fonctions asynchrones sont des fonctions qui peuvent être suspendues et reprises plus tard. Elles permettent d'attendre des opérations asynchrones comme les requêtes de bdd qui peuvent prendre du temps.
@@ -505,8 +431,6 @@ async function getUsers() {
   Il est courant d'utiliser **await** devant une **promesse** qui renvoie le résultat d'une requête de base de données.
 
 - La structure **try et catch**, permet de gérer les erreurs. Le code à l'intérieur du bloc try sera exécuté, si une erreur se produit, le bloc catch sera exécuté. Le try et catch **doit** être utilisé avec les fonctions asynchrones.
-
-</br >
 
 - then et catch:
 
@@ -522,13 +446,11 @@ function getUsers() {
 }
 ```
 
-</br >
-
 **_Précisions:_**
 
 - **then** et **catch** sont une autre façon de faire des requêtes asynchrones. **then** est utilisé pour récupérer les données si la requête est résolue. **catch** est utilisé pour récupérer l'erreur si la requête est rejetée.
 
-</br >
+- l'avantage est que le code est non bloquant. Alors qu'avec async et await, le code est bloquant et il
 
 **_Les commandes node pour faire des requêtes SQL:_**
 
@@ -536,19 +458,13 @@ function getUsers() {
 - connect() - permet de connecter le client à la base de données. Exemple: `client.connect();`
 - end() - permet de terminer la connexion avec la base de données. Exemple: `client.end();`
 
-</br >
-
 ---
-
-</br >
 
 ## 7. Quelques exemples d'usage de SQL
 
 ### Gestion des utilisateurs
 
 #### Créer un utilisateur sur une base de données PostgreSQL
-
-</br >
 
 - Pour créer l'utilisateur `trombi` sur la base de données `exemple` avec le mot de passe `1234`, exécuter la commande suivante:
 
@@ -574,8 +490,6 @@ DROP DATABASE exemple;
 DROP USER trombi;
 ```
 
-</br >
-
 #### Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:
 
 ```sql
@@ -589,8 +503,6 @@ Expliquons cette commande:
 - `exemple` - est le nom de la base de données.
 - `-U` - permet de spécifier l'utilisateur avec lequel se connecter.
 - `trombi` - est le nom de l'utilisateur.
-
-</br >
 
 #### Créer une table
 
@@ -610,8 +522,6 @@ CREATE TABLE clients (
 );
 ```
 
-</br >
-
 #### Insérer des données dans la table users
 
 ```sql
@@ -622,15 +532,11 @@ INSERT INTO clients (name, email, password) VALUES
 ('Alice', 'Alice@example.com', '1112');
 ```
 
-</br >
-
 #### Sélectionner notre utilisateur
 
 ```sql
 SELECT * FROM clients WHERE email = 'john@example.com';
 ```
-
-</br >
 
 ## 8. Les Outils
 
@@ -638,13 +544,9 @@ SELECT * FROM clients WHERE email = 'john@example.com';
 
 TablePlus est un outil qui permet de gérer les bases de données en GUI. Il est disponible sur Mac, Windows et Linux. Il permet de se connecter à plusieurs types de bases de données.
 
-</br >
-
 ### pgAdmin
 
 pgAdmin est un outil qui permet de gérer les bases de données PostgreSQL en GUI. Il est disponible sur Mac, Windows et Linux.
-
-</br >
 
 ## 9. La sécurité
 
@@ -670,5 +572,3 @@ client.query(
   }
 );
 ```
-
-</br >
