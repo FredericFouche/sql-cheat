@@ -36,6 +36,9 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [SQL Commandes de requête](#sql-commandes-de-requête)
 - [SQL Commandes de requête avancées](#sql-commandes-de-requête-avancées)
 - [Les types de données en SQL](#les-types-de-données-en-sql)
+- [IF EXISTS/IF NOT EXISTS](#if-existsif-not-exists)
+- [POSTGRESQL SERIAL PRIMARY KEY](#postgresql-serial-primary-key)
+- [REFERENCES](#references)
 
 [6. Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
 
@@ -45,14 +48,12 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 [7. Quelques exemples d'usage de SQL](#7-quelques-exemples-dusage-de-sql)
 
 - [Gestion des utilisateurs](#gestion-des-utilisateurs)
+
   - [Créer un utilisateur sur une base de données PostgreSQL](#créer-un-utilisateur-sur-une-base-de-données-postgresql)
   - [Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:](#pour-se-connecter-à-la-base-de-données-exemple-avec-lutilisateur-trombi)
   - [Créer une table](#créer-une-table)
   - [Insérer des données dans la table users](#insérer-des-données-dans-la-table-users)
   - [Sélectionner notre utilisateur](#sélectionner-notre-utilisateur)
-  - [IF EXISTS/IF NOT EXISTS](#if-existsif-not-exists)
-  - [POSTGRESQL SERIAL PRIMARY KEY](#postgresql-serial-primary-key)
-  - [REFERENCES](#references)
 
 [8. Les Outils](#8-les-outils)
 
@@ -71,9 +72,9 @@ L'intérêt d'utiliser une base de données, c'est d'avoir une single source of 
 ### L'organisation des bases de données
 
 Les bases de données sont généralement organisées en tables. Une table est composée de lignes et de colonnes. Les colonnes contiennent les noms des champs et définissent le type de données qui seront stockées dans le champ. Les lignes contiennent les enregistrements ou les données pour les colonnes spécifiées.
+
 </br >
-</br >
-</br >
+
 **Schéma d'une base de données:**
 
 <ul>
@@ -347,6 +348,51 @@ Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieur
 
 </br >
 
+#### IF EXISTS/IF NOT EXISTS
+
+Les mots-clés `IF EXISTS` et `IF NOT EXISTS` permettent de vérifier si une table existe avant de la créer ou de la supprimer.
+
+```sql
+-- Créer une table clients si elle n'existe pas
+CREATE TABLE IF NOT EXISTS clients (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+```
+
+```sql
+-- Supprimer la table clients si elle existe
+DROP TABLE IF EXISTS clients;
+```
+
+</br >
+
+#### POSTGRESQL SERIAL PRIMARY KEY
+
+Le type de données `SERIAL` est utilisé pour générer automatiquement des valeurs numériques uniques. Il est généralement utilisé pour les clés primaires. C'est un entier auto-incrémenté.
+
+</br >
+
+#### REFERENCES
+
+Le mot-clé `REFERENCES` permet de créer une clé étrangère. Une clé étrangère est une colonne ou un groupe de colonnes dans une table qui fait référence à une colonne ou un groupe de colonnes dans une autre table.
+
+```sql
+-- Créer une table orders
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  product_id INT,
+  -- INT est un type de données qui permet de stocker des nombres entiers.
+  FOREIGN KEY(product_id) REFERENCES products(id)
+  -- FOREIGN KEY indique que le champ est une clé étrangère.
+  -- REFERENCES indique la table et la colonne à laquelle la clé étrangère fait référence.
+);
+```
+
+</br >
+
 ---
 
 </br >
@@ -554,51 +600,6 @@ INSERT INTO clients (name, email, password) VALUES
 
 ```sql
 SELECT * FROM clients WHERE email = 'john@example.com';
-```
-
-</br >
-
-#### IF EXISTS/IF NOT EXISTS
-
-Les mots-clés `IF EXISTS` et `IF NOT EXISTS` permettent de vérifier si une table existe avant de la créer ou de la supprimer.
-
-```sql
--- Créer une table clients si elle n'existe pas
-CREATE TABLE IF NOT EXISTS clients (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
-);
-```
-
-```sql
--- Supprimer la table clients si elle existe
-DROP TABLE IF EXISTS clients;
-```
-
-</br >
-
-#### POSTGRESQL SERIAL PRIMARY KEY
-
-Le type de données `SERIAL` est utilisé pour générer automatiquement des valeurs numériques uniques. Il est généralement utilisé pour les clés primaires. C'est un entier auto-incrémenté.
-
-</br >
-
-#### REFERENCES
-
-Le mot-clé `REFERENCES` permet de créer une clé étrangère. Une clé étrangère est une colonne ou un groupe de colonnes dans une table qui fait référence à une colonne ou un groupe de colonnes dans une autre table.
-
-```sql
--- Créer une table orders
-CREATE TABLE orders (
-  id SERIAL PRIMARY KEY,
-  product_id INT,
-  -- INT est un type de données qui permet de stocker des nombres entiers.
-  FOREIGN KEY(product_id) REFERENCES products(id)
-  -- FOREIGN KEY indique que le champ est une clé étrangère.
-  -- REFERENCES indique la table et la colonne à laquelle la clé étrangère fait référence.
-);
 ```
 
 </br >
