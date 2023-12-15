@@ -254,6 +254,8 @@ const client = new Client(process.env.PG_URL);
 module.exports = client;
 ```
 
+Il faut bien utiliser les promesses et les fonctions asynchrones pour éviter de bloquer le serveur dans l'attente d'une réponse de la base de données. Il faut attendre que la promesse soit **Fullfilled**, soit **Rejected** si rejetée, soit **Pending** si elle est en attente.
+
 </br >
 
 ### L'active record
