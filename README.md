@@ -4,30 +4,30 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 ## Sommaire
 
-[1. Qu'est-ce qu'une base de données ?](#1-quest-ce-quune-base-de-données)
+### [1. Qu'est-ce qu'une base de données ?](#1-quest-ce-quune-base-de-données)
 
 - [L'organisation des bases de données](#lorganisation-des-bases-de-données)
 - [Les types de bases de données](#les-types-de-bases-de-données)
 - [Les langages de bases de données](#les-langages-de-bases-de-données)
 
-[2. La conception d'une base de données](#2-la-conception-dune-base-de-données)
+### [2. La conception d'une base de données](#2-la-conception-dune-base-de-données)
 
 - [Le Modèle Conceptuel de Données (MCD)](#le-modèle-conceptuel-de-données-mcd)
 - [Le Modèle Logique de Données (MLD)](#le-modèle-logique-de-données-mld)
 
-[3. Les notions de base](#3-les-notions-de-base)
+### [3. Les notions de base](#3-les-notions-de-base)
 
 - [Les clés primaires](#les-clés-primaires)
 - [Les clés étrangères](#les-clés-étrangères)
 - [Les cardinalités](#les-cardinalités)
 - [ORM](#orm)
 
-[4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
+### [4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
 
 - [Le data mapper](#le-data-mapper)
 - [L'active record](#lactive-record)
 
-[5. Les commandes de base de SQL](#5-les-commandes-de-base-de-sql)
+### [5. Les commandes de base de SQL](#5-les-commandes-de-base-de-sql)
 
 - [SQL Commandes de manipulation des lignes](#sql-commandes-de-manipulation-des-lignes)
 - [SQL Commandes de base de données](#sql-commandes-de-base-de-données)
@@ -40,12 +40,12 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [POSTGRESQL SERIAL PRIMARY KEY](#postgresql-serial-primary-key)
 - [REFERENCES](#references)
 
-[6. Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
+### [6. Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
 
 - [Installation de PostgreSQL](#installation-de-postgresql)
 - [Initialiser une base de données avec PostgreSQL dans Node.js](#initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
 
-[7. Quelques exemples d'usage de SQL](#7-quelques-exemples-dusage-de-sql)
+### [7. Quelques exemples d'usage de SQL](#7-quelques-exemples-dusage-de-sql)
 
 - [Gestion des utilisateurs](#gestion-des-utilisateurs)
 
@@ -55,12 +55,12 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
   - [Insérer des données dans la table users](#insérer-des-données-dans-la-table-users)
   - [Sélectionner notre utilisateur](#sélectionner-notre-utilisateur)
 
-[8. Les Outils](#8-les-outils)
+### [8. Les Outils](#8-les-outils)
 
 - [TablePlus](#tableplus)
 - [pgAdmin](#pgadmin)
 
-[9. La sécurité](#9-la-sécurité)
+### [9. La sécurité](#9-la-sécurité)
 
 - [Les injections SQL](#les-injections-sql)
 
@@ -556,7 +556,7 @@ pgAdmin est un outil qui permet de gérer les bases de données PostgreSQL en GU
 
 Pour éviter les injections SQL, dans le cadre d'une concaténation de chaînes de caractères, il faut utiliser des requêtes paramétrées/préparées, les données seront remplacées par des $1 et passeront en paramètre de la fonction query. $x permet de nettoyer les données.
 
-Exemple:
+**Exemple:**
 
 ```js
 const name = 'John';
