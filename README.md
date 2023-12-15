@@ -1,6 +1,63 @@
 # sql-cheat
 
-## Qu'est-ce qu'une base de données ?
+## Sommaire
+
+[1. Qu'est-ce qu'une base de données ?](#1-quest-ce-quune-base-de-données)
+
+- [L'organisation des bases de données](#lorganisation-des-bases-de-données)
+- [Les types de bases de données](#les-types-de-bases-de-données)
+- [Les langages de bases de données](#les-langages-de-bases-de-données)
+
+[2. La conception d'une base de données](#2-la-conception-dune-base-de-données)
+
+- [Le Modèle Conceptuel de Données (MCD)](#le-modèle-conceptuel-de-données-mcd)
+- [Le Modèle Logique de Données (MLD)](#le-modèle-logique-de-données-mld)
+
+[3. Les notions de base](#3-les-notions-de-base)
+
+- [Les clés primaires](#les-clés-primaires)
+- [Les clés étrangères](#les-clés-étrangères)
+- [Les cardinalités](#les-cardinalités)
+- [ORM](#orm)
+
+[4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
+
+- [Le data mapper](#le-data-mapper)
+- [L'active record](#lactive-record)
+
+[5. Les commandes de base de SQL](#5-les-commandes-de-base-de-sql)
+
+- [SQL Commandes de manipulation des lignes](#sql-commandes-de-manipulation-des-lignes)
+- [SQL Commandes de base de données](#sql-commandes-de-base-de-données)
+- [SQL Commandes de manipulation de table](#sql-commandes-de-manipulation-de-table)
+- [SQL Commandes de contraintes](#sql-commandes-de-contraintes)
+- [SQL Commandes de requête](#sql-commandes-de-requête)
+- [SQL Commandes de requête avancées](#sql-commandes-de-requête-avancées)
+- [Les types de données en SQL](#les-types-de-données-en-sql)
+
+[6. Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
+
+- [Installation de PostgreSQL](#installation-de-postgresql)
+- [Initialiser une base de données avec PostgreSQL dans Node.js](#initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
+
+[7. Quelques exemples d'usage de SQL](#7-quelques-exemples-dusage-de-sql)
+
+- [Gestion des utilisateurs](#gestion-des-utilisateurs)
+  - [Créer un utilisateur sur une base de données PostgreSQL](#créer-un-utilisateur-sur-une-base-de-données-postgresql)
+  - [Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:](#pour-se-connecter-à-la-base-de-données-exemple-avec-lutilisateur-trombi)
+  - [Créer une table](#créer-une-table)
+  - [Insérer des données dans la table users](#insérer-des-données-dans-la-table-users)
+  - [Sélectionner notre utilisateur](#sélectionner-notre-utilisateur)
+  - [IF EXISTS/IF NOT EXISTS](#if-existsif-not-exists)
+  - [POSTGRESQL SERIAL PRIMARY KEY](#postgresql-serial-primary-key)
+  - [REFERENCES](#references)
+
+[8. Les Outils](#8-les-outils)
+
+- [TablePlus](#tableplus)
+- [pgAdmin](#pgadmin)
+
+## 1. Qu'est-ce qu'une base de données ?
 
 Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données. Les bases de données peuvent être utilisées pour stocker des informations telles que des données client, des données de vente, des informations sur les produits, des données financières et bien plus encore.
 
@@ -76,7 +133,7 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 
 </br >
 
-## La conception d'une base de données
+## 2. La conception d'une base de données
 
 ### Le Modèle Conceptuel de Données (MCD)
 
@@ -104,7 +161,106 @@ Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de b
 
 </br >
 
-## Les commandes de base de SQL
+## 3. Les notions de base
+
+Il existe des notions de base qui sont utilisées dans les bases de données relationnelles. Ces notions sont les suivantes:
+
+### Les clés primaires
+
+Les clés primaires sont un champ ou plusieurs qui caractérisent de manière unique chaque enregistrement d'une table. Elles sont utilisées pour "discriminer" et donc identifier les données spécifiques.
+Généralement, on utilise un champ qui s'appelle `id` et qui est un entier auto-incrémenté.
+Cela peut aussi être un ensemble de champs qui forment une clé primaire composite.
+
+</br >
+
+### Les clés étrangères
+
+Les clés étrangères sont des champs qui font référence à une clé primaire dans une autre table. Elles sont utilisées pour créer des **relations** entre nos données.
+
+Par exemple, si nous avons une table `users` et une table `orders`, nous pouvons créer une relation entre les deux tables en ajoutant une clé étrangère `user_id` à la table `orders`. La clé étrangère `user_id` fait référence à la clé primaire `id` de la table `users`. Cela permet de lier les commandes à un utilisateur spécifique. Cela permet également de récupérer les données de l'utilisateur lors de la récupération des données de la commande.
+
+Cela permet de rajouter des contraintes sur les données. Par exemple, si nous supprimons un utilisateur, nous pouvons supprimer toutes les commandes associées à cet utilisateur. Cela permet également de s'assurer que les données sont cohérentes.
+
+</br >
+
+### Les cardinalités
+
+Les cardinalités sont utilisées pour définir les relations entre les tables. Elles sont utilisées pour définir le nombre d'occurrences dans une table qui peuvent être associées à un seul enregistrement dans une autre table.
+
+</br >
+
+### ORM
+
+</br >
+
+## 4. Le Modèle dans le MVC
+
+Le Modèle dans le MVC est la partie de l'application qui gère les données. Il est généralement utilisé pour récupérer et stocker des données dans une base de données Il est notre seul point d'entrée pour accéder aux données.
+
+Dans le fichier models/, il y aura plusieurs fichier qui correspondent à chaque model métier de l'application. Par exemple, si nous avons une table `users` et une table `orders`, nous aurons un fichier `userModel.js` et un fichier `orderModel.js` dans le dossier models/. Ces fichiers contiendront les fonctions qui permettent de récupérer et de stocker des données dans la base de données pour chaque logique métier.
+
+Il existe 2 design pattern principaux pour faire ça : le **_data mapper_** et l'**_active record_**.
+
+### Le data mapper
+
+</br >
+
+> Ceci est un design pattern. Un design pattern est un patron de conception permettant de résoudre un problème récurrent. Il permet de résoudre un problème récurrent de manière optimale.
+
+</br >
+
+Un data mapper est une fonction qui va faire une requête et retourner les resultats. Sa structure dans un modèle orderModel.js serait la suivante :
+
+</br >
+
+```js
+// Import du client pour se connecter à la base de données
+
+const client = require('../client');
+
+const orderModel = {
+  async findAll() {
+    const orders = await client.query('SELECT * FROM "orders";');
+    return orders.rows;
+  },
+  async findOne(id) {
+    const order = await client.query('SELECT * FROM "orders" WHERE id = $1;', [
+      id,
+    ]);
+    return order.rows[0];
+  },
+};
+
+module.exports = orderModel;
+```
+
+</br >
+
+Pour éviter de multiplier les connexions à la base de données, on crée un fichier client.js qui va se connecter à la base de données et exporter le client. Ce fichier sera importé dans les modèles :
+
+</br >
+
+```js
+const { Client } = require('pg');
+
+// Attention, à chaque appel de new Client, on crée une nouvelle instance de client et on se connecte à la base de données
+
+const client = new Client(process.env.PG_URL);
+
+// Export du client pour le mettre à disposition des autres, pour éviter de multiplier les connexions à la base de données
+
+module.exports = client;
+```
+
+</br >
+
+### L'active record
+
+> Ceci est un design pattern. Un design pattern est un patron de conception permettant de résoudre un problème récurrent. Il permet de résoudre un problème récurrent de manière optimale.
+
+En construction.
+
+## 5. Les commandes de base de SQL
 
 Ici sont listées les commandes de base de SQL. Elles sont divisées en plusieurs catégories: les commandes de manipulation des lignes, les commandes de base de données, les commandes de manipulation de table, les commandes de contraintes, les commandes de requête et les commandes de requête avancées.
 
@@ -204,7 +360,7 @@ SQL utilise des données très structurées. Il faut donc spécifier le type de 
 
 </br >
 
-## Initialiser une base de données avec PostgreSQL dans Node.js
+## 6. Initialiser une base de données avec PostgreSQL dans Node.js
 
 </br >
 
@@ -221,7 +377,9 @@ SQL utilise des données très structurées. Il faut donc spécifier le type de 
 - Dans votre fichier .env ajouter les variables d'environnement suivantes:
 
 ```
+
 PG_URL=postgres://username:password@localhost:5432/database_name
+
 ```
 
 - Créer un fichier `database.js` et y ajouter le code suivant:
@@ -290,7 +448,7 @@ async function getUsers() {
 
 </br >
 
-## Quelques exemples d'usage de SQL
+## 7. Quelques exemples d'usage de SQL
 
 ### Gestion des utilisateurs
 
@@ -422,3 +580,19 @@ CREATE TABLE orders (
   -- REFERENCES indique la table et la colonne à laquelle la clé étrangère fait référence.
 );
 ```
+
+</br >
+
+## 8. Les Outils
+
+### TablePlus
+
+TablePlus est un outil qui permet de gérer les bases de données en GUI. Il est disponible sur Mac, Windows et Linux. Il permet de se connecter à plusieurs types de bases de données.
+
+</br >
+
+### pgAdmin
+
+pgAdmin est un outil qui permet de gérer les bases de données PostgreSQL en GUI. Il est disponible sur Mac, Windows et Linux.
+
+</br >
