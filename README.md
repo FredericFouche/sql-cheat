@@ -61,8 +61,11 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 ## 1. Qu'est-ce qu'une base de données ?
 
-Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données. Les bases de données peuvent être utilisées pour stocker des informations telles que des données client, des données de vente, des informations sur les produits, des données financières et bien plus encore.
+Une base de données est un ensemble de données organisées de manière structurée. Une base de données est généralement stockée dans un système de gestion de base de données (SGBD), qui est un logiciel qui permet de stocker, organiser et récupérer des données.
 
+Les bases de données peuvent être utilisées pour stocker des informations telles que des données client, des données de vente, des informations sur les produits, des données financières et bien plus encore.
+
+L'intérêt d'utiliser une base de données, c'est d'avoir une single source of truth (source de vérité unique). Cela permet d'avoir une seule source de données qui est utilisée par plusieurs outils.
 </br >
 
 ### L'organisation des bases de données
@@ -117,6 +120,17 @@ Les bases de données sont généralement organisées en tables. Une table est c
 </ul>
 
 </br >
+</br >
+
+une **table** ressemblera à ça:
+
+| id  | name  | email             |
+| --- | ----- | ----------------- |
+| 1   | John  | john@example.com  |
+| 2   | Jane  | Jane@example.com  |
+| 3   | Bob   | Bob@example.com   |
+| 4   | Alice | Alice@example.com |
+
 </br >
 
 ### Les types de bases de données
