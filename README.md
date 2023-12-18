@@ -59,6 +59,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 - [TablePlus](#tableplus)
 - [pgAdmin](#pgadmin)
+- [urlencoded](#urlencoded)
 
 ### [9. La sécurité](#9-la-sécurité)
 
@@ -547,6 +548,19 @@ TablePlus est un outil qui permet de gérer les bases de données en GUI. Il est
 ### pgAdmin
 
 pgAdmin est un outil qui permet de gérer les bases de données PostgreSQL en GUI. Il est disponible sur Mac, Windows et Linux.
+
+### urlencoded
+
+urlencoded est un middleware qui permet de parser les données envoyées par un formulaire. Il est utilisé avec express. Il permet de récupérer les données envoyées par un formulaire dans `req.body`.
+
+```js
+const express = require('express');
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+```
+
+Le extended permet de spécifier quel module utiliser pour parser les données. Si extended est à true, il utilisera le module `qs`, si extended est à false, il utilisera le module `querystring`.
 
 ## 9. La sécurité
 
