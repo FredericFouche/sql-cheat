@@ -190,9 +190,20 @@ Les cardinalités sont utilisées pour définir les relations entre les tables. 
 
 ### ORM
 
-En Construction.
+Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les données entre un langage de programmation et une base de données. Sequelize est un ORM populaire pour Node.js, facilitant l'interaction avec des bases de données SQL comme PostgreSQL, MySQL, SQLite, et MSSQL. Avec Sequelize, les développeurs peuvent gérer les données de base de données via des objets de programmation, simplifiant ainsi le développement et la maintenance des applications.
 
 ### Les jointures
+
+Les jointures en base de données sont des opérations qui permettent de combiner des données de deux tables ou plus, basées sur une relation commune. Elles sont essentielles dans le modèle relationnel pour exploiter efficacement les relations entre les différentes tables. Voici les types de jointures les plus courants :
+
+| Type de Jointure                  | Description                                                                                                                                                                                                                                                          |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Jointure Interne (Inner Join)     | Sélectionne les enregistrements qui ont des valeurs correspondantes dans les deux tables.                                                                                                                                                                            |
+| Jointure Externe (Outer Join)     | Peut être de trois types - gauche (Left), droite (Right), ou complète (Full). Elle sélectionne tous les enregistrements d'une table et ceux correspondants de l'autre table. Les résultats incluent des valeurs nulles pour les enregistrements sans correspondance. |
+| Jointure Croisée (Cross Join)     | Produit le produit cartésien des deux tables, combinant chaque enregistrement de la première table avec chaque enregistrement de la seconde.                                                                                                                         |
+| Jointure Naturelle (Natural Join) | Jointure interne basée sur toutes les colonnes ayant le même nom dans les deux tables.                                                                                                                                                                               |
+
+Ces jointures sont fondamentales pour la récupération et l'analyse des données dans des systèmes de gestion de bases de données relationnelles. Elles permettent de créer des requêtes complexes et de tirer des informations significatives à partir de données réparties dans différentes tables.
 
 ## 4. Le Modèle dans le MVC
 
