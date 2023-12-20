@@ -204,15 +204,44 @@ Il existe 3 types de cardinalités:
 
 Les tables de jointures en base de données sont des opérations qui permettent de combiner des données de deux tables ou plus, basées sur une relation commune. Elles sont essentielles dans le modèle relationnel pour exploiter efficacement les relations entre les différentes tables. Voici les types de jointures les plus courants :
 
-| Type de Jointure                  | Description                                                                                                                                                                                                                                                          |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Jointure Interne (Inner Join)     | Sélectionne les enregistrements qui ont des valeurs correspondantes dans les deux tables.                                                                                                                                                                            |
-| Jointure Externe (Outer Join)     | Peut être de trois types - gauche (Left), droite (Right), ou complète (Full). Elle sélectionne tous les enregistrements d'une table et ceux correspondants de l'autre table. Les résultats incluent des valeurs nulles pour les enregistrements sans correspondance. |
-| Jointure Croisée (Cross Join)     | Produit le produit cartésien des deux tables, combinant chaque enregistrement de la première table avec chaque enregistrement de la seconde.                                                                                                                         |
-| Jointure Naturelle (Natural Join) | Jointure interne basée sur toutes les colonnes ayant le même nom dans les deux tables.                                                                                                                                                                               |
-| Jointure Auto (Self Join)         | Jointure d'une table avec elle-même.                                                                                                                                                                                                                                 |
+| Type de Jointure                  | Description                                                                                                                                                                                                                                                          | Exemple                                                                                   |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Jointure Interne (Inner Join)     | Sélectionne les enregistrements qui ont des valeurs correspondantes dans les deux tables. Si un enregistrement est NULL, il ne sera pas renvoyé                                                                                                                      | `sql SELECT \* FROM Table1 INNER JOIN Table2 ON Table1.column_name = Table2.column_name;` |
+| Jointure Externe (Outer Join)     | Peut être de trois types - gauche (Left), droite (Right), ou complète (Full). Elle sélectionne tous les enregistrements d'une table et ceux correspondants de l'autre table. Les résultats incluent des valeurs nulles pour les enregistrements sans correspondance. | `sql SELECT \* FROM Table1 LEFT JOIN Table2 ON Table1.column_name = Table2.column_name; ` |
+| Jointure Croisée (Cross Join)     | Produit le produit cartésien des deux tables, combinant chaque enregistrement de la première table avec chaque enregistrement de la seconde.                                                                                                                         | `sql SELECT \* FROM Table1 CROSS JOIN Table2;                                          `  |
+| Jointure Naturelle (Natural Join) | Jointure interne basée sur toutes les colonnes ayant le même nom dans les deux tables.                                                                                                                                                                               | `sql SELECT \* FROM Table1 NATURAL JOIN Table2;                                        `  |
+| Jointure Auto (Self Join)         | Jointure d'une table avec elle-même.                                                                                                                                                                                                                                 | `sql SELECT \* FROM Table1 T1, Table1 T2 WHERE condition;                               ` |
 
 Ces jointures sont fondamentales pour la récupération et l'analyse des données dans des systèmes de gestion de bases de données relationnelles. Elles permettent de créer des requêtes complexes et de tirer des informations significatives à partir de données réparties dans différentes tables.
+
+**ex :**
+
+> **_Table Etudiants_**
+>
+> | etudiant_id | nom    | prenom |
+> | ----------- | ------ | ------ |
+> | 1           | Dupont | Jean   |
+> | 2           | Martin | Alice  |
+> | 3           | Durand | Marc   |
+>
+> **_Table Cours_**
+>
+> | cours_id | nom_du_cours  |
+> | -------- | ------------- |
+> | 101      | Mathématiques |
+> | 102      | Informatique  |
+> | 103      | Littérature   |
+>
+> **_Table Inscriptions_**
+>
+> | inscription_id | etudiant_id | cours_id |
+> | -------------- | ----------- | -------- |
+> | 1              | 1           | 101      |
+> | 2              | 1           | 102      |
+> | 3              | 2           | 102      |
+> | 4              | 3           | 103      |
+
+Ici l'étudiant **Jean Dupont**(`etudiant_id = 1`) est inscrit à deux cours, **Mathématiques**(`cours_id = 101`) et **Informatique**(`cours_id = 102`). Alice Martin est inscrite à un seul cours, Informatique. Marc Durand est inscrit à un seul cours, Littérature.
 
 ### ORM
 
