@@ -21,6 +21,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [Les clés étrangères](#les-clés-étrangères)
 - [Les cardinalités](#les-cardinalités)
 - [ORM](#orm)
+- [Les jointures](#les-jointures)
 
 ### [4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
 
@@ -55,11 +56,14 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
   - [Insérer des données dans la table users](#insérer-des-données-dans-la-table-users)
   - [Sélectionner notre utilisateur](#sélectionner-notre-utilisateur)
 
+- [Rows, rowCount dans le résultat d'une requête](#rows-rowcount-dans-le-résultat-dune-requête)
+
 ### [8. Les Outils](#8-les-outils)
 
 - [TablePlus](#tableplus)
 - [pgAdmin](#pgadmin)
 - [urlencoded](#urlencoded)
+- [Les commandes de PostgreSQL](#les-commandes-de-postgresql)
 
 ### [9. La sécurité](#9-la-sécurité)
 
@@ -186,6 +190,10 @@ Cela permet de rajouter des contraintes sur les données. Par exemple, si nous s
 Les cardinalités sont utilisées pour définir les relations entre les tables. Elles sont utilisées pour définir le nombre d'occurrences dans une table qui peuvent être associées à un seul enregistrement dans une autre table.
 
 ### ORM
+
+En Construction.
+
+### Les jointures
 
 ## 4. Le Modèle dans le MVC
 
@@ -539,6 +547,12 @@ INSERT INTO clients (name, email, password) VALUES
 SELECT * FROM clients WHERE email = 'john@example.com';
 ```
 
+### Rows, rowCount dans le résultat d'une requête
+
+- rows - contient les données retournées par la requête. Les données sont stockées dans un tableau. Chaque élément du tableau est un objet qui contient les données d'une ligne.
+
+- rowCount - contient le nombre de lignes retournées par la requête. C'est un nombre entier. Il est généralement utilisé pour vérifier si la requête a retourné des données car il est égal à 0 si la requête n'a retourné aucune donnée.
+
 ## 8. Les Outils
 
 ### TablePlus
@@ -561,6 +575,15 @@ app.use(express.urlencoded({ extended: true }));
 ```
 
 Le extended permet de spécifier quel module utiliser pour parser les données. Si extended est à true, il utilisera le module `qs`, si extended est à false, il utilisera le module `querystring`.
+
+### Les commandes de PostgreSQL
+
+- `\l` - permet de lister les bases de données.
+- `\c` - permet de se connecter à une base de données.
+- `\dt` - permet de lister les tables.
+- `\d` - permet de décrire une table.
+- `\q` - permet de quitter PostgreSQL.
+- `\du` - permet de lister les utilisateurs.
 
 ## 9. La sécurité
 
