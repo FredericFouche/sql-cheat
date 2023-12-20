@@ -20,8 +20,8 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [Les clés primaires](#les-clés-primaires)
 - [Les clés étrangères](#les-clés-étrangères)
 - [Les cardinalités](#les-cardinalités)
+- [Les tables de jointures](#les-tables-de-jointures)
 - [ORM](#orm)
-- [Les jointures](#les-jointures)
 
 ### [4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
 
@@ -187,14 +187,22 @@ Cela permet de rajouter des contraintes sur les données. Par exemple, si nous s
 ### Les cardinalités
 
 Les cardinalités sont utilisées pour définir les relations entre les tables. Elles sont utilisées pour définir le nombre d'occurrences dans une table qui peuvent être associées à un seul enregistrement dans une autre table.
+Il existe 3 types de cardinalités:
 
-### ORM
+- **One to One** - Une occurrence dans une table est associée à une seule occurrence dans une autre table. Très souvent les données en One to One sont dans une seule table.
 
-Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les données entre un langage de programmation et une base de données. Sequelize est un ORM populaire pour Node.js, facilitant l'interaction avec des bases de données SQL comme PostgreSQL, MySQL, SQLite, et MSSQL. Avec Sequelize, les développeurs peuvent gérer les données de base de données via des objets de programmation, simplifiant ainsi le développement et la maintenance des applications.
+  - **ex** : un utilisateur a une adresse.
 
-### Les jointures
+- **One to Many** - Une occurrence dans une table est associée à plusieurs occurrences dans une autre table.
 
-Les jointures en base de données sont des opérations qui permettent de combiner des données de deux tables ou plus, basées sur une relation commune. Elles sont essentielles dans le modèle relationnel pour exploiter efficacement les relations entre les différentes tables. Voici les types de jointures les plus courants :
+  - **ex** : un utilisateur a plusieurs commandes.
+
+- **Many to Many** - Plusieurs occurrences dans une table sont associées à plusieurs occurrences dans une autre table. Cela nécessite une **table de jointure**. La table de jointure contient les clés primaires des deux tables.
+  - **ex** : un utilisateur a plusieurs commandes et une commande a plusieurs produits.
+
+### Les tables de jointures
+
+Les tables de jointures en base de données sont des opérations qui permettent de combiner des données de deux tables ou plus, basées sur une relation commune. Elles sont essentielles dans le modèle relationnel pour exploiter efficacement les relations entre les différentes tables. Voici les types de jointures les plus courants :
 
 | Type de Jointure                  | Description                                                                                                                                                                                                                                                          |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -202,8 +210,13 @@ Les jointures en base de données sont des opérations qui permettent de combine
 | Jointure Externe (Outer Join)     | Peut être de trois types - gauche (Left), droite (Right), ou complète (Full). Elle sélectionne tous les enregistrements d'une table et ceux correspondants de l'autre table. Les résultats incluent des valeurs nulles pour les enregistrements sans correspondance. |
 | Jointure Croisée (Cross Join)     | Produit le produit cartésien des deux tables, combinant chaque enregistrement de la première table avec chaque enregistrement de la seconde.                                                                                                                         |
 | Jointure Naturelle (Natural Join) | Jointure interne basée sur toutes les colonnes ayant le même nom dans les deux tables.                                                                                                                                                                               |
+| Jointure Auto (Self Join)         | Jointure d'une table avec elle-même.                                                                                                                                                                                                                                 |
 
 Ces jointures sont fondamentales pour la récupération et l'analyse des données dans des systèmes de gestion de bases de données relationnelles. Elles permettent de créer des requêtes complexes et de tirer des informations significatives à partir de données réparties dans différentes tables.
+
+### ORM
+
+Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les données entre un langage de programmation et une base de données. Sequelize est un ORM populaire pour Node.js, facilitant l'interaction avec des bases de données SQL comme PostgreSQL, MySQL, SQLite, et MSSQL. Avec Sequelize, les développeurs peuvent gérer les données de base de données via des objets de programmation, simplifiant ainsi le développement et la maintenance des applications.
 
 ## 4. Le Modèle dans le MVC
 
