@@ -22,8 +22,8 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [Les clés primaires](#les-clés-primaires)
 - [Les clés étrangères](#les-clés-étrangères)
 - [Les cardinalités](#les-cardinalités)
+- [Les tables de jointures](#les-tables-de-jointures)
 - [ORM](#orm)
-- [Les jointures](#les-jointures)
 
 ## Partie II : SQL et Manipulation des Données
 
@@ -195,12 +195,71 @@ Cela permet de rajouter des contraintes sur les données. Par exemple, si nous s
 ### Les cardinalités
 
 Les cardinalités sont utilisées pour définir les relations entre les tables. Elles sont utilisées pour définir le nombre d'occurrences dans une table qui peuvent être associées à un seul enregistrement dans une autre table.
+Il existe 3 types de cardinalités:
+
+- **One to One** - Une occurrence dans une table est associée à une seule occurrence dans une autre table. Très souvent les données en One to One sont dans une seule table.
+
+  - **ex** : un utilisateur a une adresse.
+
+- **One to Many** - Une occurrence dans une table est associée à plusieurs occurrences dans une autre table.
+
+  - **ex** : un utilisateur a plusieurs commandes.
+
+- **Many to Many** - Plusieurs occurrences dans une table sont associées à plusieurs occurrences dans une autre table. Cela nécessite une **table de jointure**. La table de jointure contient les clés primaires des deux tables.
+  - **ex** : un utilisateur a plusieurs commandes et une commande a plusieurs produits.
+
+### Les tables de jointures
+
+Les tables de jointures en base de données sont des opérations qui permettent de combiner des données de deux tables ou plus, basées sur une relation commune. Elles sont essentielles dans le modèle relationnel pour exploiter efficacement les relations entre les différentes tables. Voici les types de jointures les plus courants :
+
+| Type de Jointure                  | Description                                                                                                                                                                                                                                                                                  | Exemple                                                                                   |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Jointure Interne (Inner Join)     | Sélectionne les enregistrements qui ont des valeurs correspondantes dans les deux tables. Si un enregistrement est NULL, il ne sera pas renvoyé                                                                                                                                              | `sql SELECT \* FROM Table1 INNER JOIN Table2 ON Table1.column_name = Table2.column_name;` |
+| Jointure Externe (Outer Join)     | Peut être de trois types - **gauche** (**Left**), **droite** (**Right**), ou **complète** (**Full**). Elle sélectionne tous les enregistrements d'une table et ceux correspondants de l'autre table. Les résultats incluent des valeurs nulles pour les enregistrements sans correspondance. | `sql SELECT \* FROM Table1 LEFT JOIN Table2 ON Table1.column_name = Table2.column_name; ` |
+| Jointure Croisée (Cross Join)     | Produit le produit cartésien des deux tables, combinant chaque enregistrement de la première table avec chaque enregistrement de la seconde.                                                                                                                                                 | `sql SELECT \* FROM Table1 CROSS JOIN Table2;                                          `  |
+| Jointure Naturelle (Natural Join) | Jointure interne basée sur toutes les colonnes ayant le même nom dans les deux tables.                                                                                                                                                                                                       | `sql SELECT \* FROM Table1 NATURAL JOIN Table2;                                        `  |
+| Jointure Auto (Self Join)         | Jointure d'une table avec elle-même.                                                                                                                                                                                                                                                         | `sql SELECT \* FROM Table1 T1, Table1 T2 WHERE condition;                               ` |
+
+Le type de jointure le plus commun est le LEFT JOIN, car il permet de récupérer toutes les données d'une table et les données correspondantes d'une autre table.
+
+Ces jointures sont fondamentales pour la récupération et l'analyse des données dans des systèmes de gestion de bases de données relationnelles. Elles permettent de créer des requêtes complexes et de tirer des informations significatives à partir de données réparties dans différentes tables.
+
+**ex :**
+
+> **_Table Etudiants_**
+>
+> | etudiant_id | nom    | prenom |
+> | ----------- | ------ | ------ |
+> | 1           | Dupont | Jean   |
+> | 2           | Martin | Alice  |
+> | 3           | Durand | Marc   |
+>
+> **_Table Cours_**
+>
+> | cours_id | nom_du_cours  |
+> | -------- | ------------- |
+> | 101      | Mathématiques |
+> | 102      | Informatique  |
+> | 103      | Littérature   |
+>
+> **_Table Inscriptions_**
+>
+> | inscription_id | etudiant_id | cours_id |
+> | -------------- | ----------- | -------- |
+> | 1              | 1           | 101      |
+> | 2              | 1           | 102      |
+> | 3              | 2           | 102      |
+> | 4              | 3           | 103      |
+
+Ici l'étudiant **Jean Dupont**(`etudiant_id = 1`) est inscrit à deux cours, **Mathématiques**(`cours_id = 101`) et **Informatique**(`cours_id = 102`). Alice Martin est inscrite à un seul cours, Informatique. Marc Durand est inscrit à un seul cours, Littérature.
+
+Schéma :
+
+![Schéma](img/sql-join.jpg)
 
 ### ORM
 
-En Construction.
-
-### Les jointures
+Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les données entre un langage de programmation et une base de données. Sequelize est un ORM populaire pour Node.js, facilitant l'interaction avec des bases de données SQL comme PostgreSQL, MySQL, SQLite, et MSSQL. Avec Sequelize, les développeurs peuvent gérer les données de base de données via des objets de programmation, simplifiant ainsi le développement et la maintenance des applications.
 
 ## 4. Le Modèle dans le MVC
 
