@@ -55,8 +55,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
   - [Créer une table](#créer-une-table)
   - [Insérer des données dans la table users](#insérer-des-données-dans-la-table-users)
   - [Sélectionner notre utilisateur](#sélectionner-notre-utilisateur)
-
-- [Rows, rowCount dans le résultat d'une requête](#rows-rowcount-dans-le-résultat-dune-requête)
+  - [Rows, rowCount dans le résultat d'une requête](#rows-rowcount-dans-le-résultat-dune-requête)
 
 ### [8. Les Outils](#8-les-outils)
 
