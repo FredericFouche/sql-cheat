@@ -451,7 +451,7 @@ SQL utilise des données très structurées. Il faut donc spécifier le type de 
 ### Initialiser une base de données avec PostgreSQL dans Node.js
 
 - Installer le module `pg` avec npm: `npm install pg`
-- Dans votre fichier .env ajouter les variables d'environnement suivantes:
+- Dans votre fichier .env ajouter les variables d'environnement de la chaîne de connexion à la base de données:
 
 ```
 
