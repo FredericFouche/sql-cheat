@@ -245,6 +245,25 @@ Ces jointures sont fondamentales pour la récupération et l'analyse des donnée
 
 Ici l'étudiant **Jean Dupont**(`etudiant_id = 1`) est inscrit à deux cours, **Mathématiques**(`cours_id = 101`) et **Informatique**(`cours_id = 102`). Alice Martin est inscrite à un seul cours, Informatique. Marc Durand est inscrit à un seul cours, Littérature.
 
+Requête SQL qui correspond :
+
+```sql
+-- Requête SQL qui permet de récupérer les étudiants et les cours auxquels ils sont inscrits
+SELECT
+-- On sélectionne les colonnes que l'on veut récupérer
+etudiants.nom,
+etudiants.prenom,
+cours.nom_du_cours
+-- On sélectionne les tables que l'on veut récupérer
+FROM etudiants
+-- On fait une jointure entre les tables etudiants et inscriptions
+LEFT JOIN inscriptions ON etudiants.etudiant_id = inscriptions.etudiant_id
+-- On fait une jointure entre les tables inscriptions et cours
+LEFT JOIN cours ON inscriptions.cours_id = cours.cours_id;
+-- le resultat sera : Jean Dupont, Mathématiques, Jean Dupont, Informatique, Alice Martin, Informatique, Marc Durand, Littérature
+
+```
+
 Schéma :
 
 ![Schéma](img/sql-join.jpg)
