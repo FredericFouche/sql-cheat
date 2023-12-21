@@ -24,6 +24,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [Les cardinalités](#les-cardinalités)
 - [Les tables de jointures](#les-tables-de-jointures)
 - [ORM](#orm)
+- [Les agrégations](#les-agrégations)
 
 ## Partie II : SQL et Manipulation des Données
 
@@ -44,6 +45,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [IF EXISTS/IF NOT EXISTS](#if-existsif-not-exists)
 - [POSTGRESQL SERIAL PRIMARY KEY](#postgresql-serial-primary-key)
 - [REFERENCES](#references)
+- [Les sous-requêtes](#les-sous-requêtes)
 
 ## Partie III : Mise en Pratique avec PostgreSQL et Node.js
 
@@ -253,6 +255,70 @@ Ces jointures sont fondamentales pour la récupération et l'analyse des donnée
 
 Ici l'étudiant **Jean Dupont**(`etudiant_id = 1`) est inscrit à deux cours, **Mathématiques**(`cours_id = 101`) et **Informatique**(`cours_id = 102`). Alice Martin est inscrite à un seul cours, Informatique. Marc Durand est inscrit à un seul cours, Littérature.
 
+Requête SQL qui correspond :
+
+```sql
+-- Requête SQL qui permet de récupérer les étudiants et les cours auxquels ils sont inscrits
+SELECT
+-- On sélectionne les colonnes que l'on veut récupérer
+etudiants.nom,
+etudiants.prenom,
+cours.nom_du_cours
+-- On sélectionne les tables que l'on veut récupérer
+FROM etudiants
+-- On fait une jointure entre les tables etudiants et inscriptions
+LEFT JOIN inscriptions ON etudiants.etudiant_id = inscriptions.etudiant_id
+-- On fait une jointure entre les tables inscriptions et cours
+LEFT JOIN cours ON inscriptions.cours_id = cours.cours_id;
+-- le resultat sera : Jean Dupont, Mathématiques, Jean Dupont, Informatique, Alice Martin, Informatique, Marc Durand, Littérature
+
+```
+
+Autre exemple de requête SQL avec LEFT JOIN :
+
+```sql
+-- Sélection des colonnes à afficher : nom, rue, numéro de rue de la personne, et le témoignage associé
+SELECT personne.nom, personne.rue, personne.numero_rue, temoignage.temoignage
+
+-- Jointure des tables 'temoignage' et 'personne'
+FROM temoignage JOIN personne
+
+-- La condition de jointure : relier les deux tables via les identifiants de la personne
+ON temoignage.personne_id = personne.id
+
+-- Filtrer pour ne sélectionner que les personnes habitant 'rue Sadi Carnot'
+WHERE personne.rue LIKE 'rue Sadi Carnot'
+
+-- Ordonner les résultats par le numéro de rue de la personne, en ordre décroissant
+ORDER BY personne.numero_rue DESC
+
+-- Limiter les résultats à une seule entrée
+LIMIT 1;
+```
+
+Dans le cadre d'une double jointure LEFT :
+
+```sql
+-- Sélection des colonnes à afficher : nom de l'employé, nom du département et titre du projet
+SELECT Employes.nom, Departements.nom_departement, Projets.titre_projet
+
+-- De la table Employes
+FROM Employes
+
+-- Premier LEFT JOIN pour inclure tous les employés, même ceux sans département
+LEFT JOIN Departements
+-- Condition de jointure : relier les employés à leur département
+ON Employes.id_departement = Departements.id
+
+-- Deuxième LEFT JOIN pour inclure tous les employés, même ceux sans projet
+LEFT JOIN Projets
+-- Condition de jointure : relier les employés à leurs projets
+ON Employes.id_projet = Projets.id;
+
+-- Optionnel : ajouter une clause WHERE, ORDER BY, etc., si nécessaire
+WHERE Employes.nom = 'Dupont';
+```
+
 Schéma :
 
 ![Schéma](img/sql-join.jpg)
@@ -260,6 +326,24 @@ Schéma :
 ### ORM
 
 Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les données entre un langage de programmation et une base de données. Sequelize est un ORM populaire pour Node.js, facilitant l'interaction avec des bases de données SQL comme PostgreSQL, MySQL, SQLite, et MSSQL. Avec Sequelize, les développeurs peuvent gérer les données de base de données via des objets de programmation, simplifiant ainsi le développement et la maintenance des applications.
+
+### Les agrégations
+
+A l'origine, on travaille plutôt ligne par ligne. Mais on peut travailler en faisant des **agrégations**. Cela permet de faire des calculs sur plusieurs lignes. Par exemple, on peut faire la somme de toutes les lignes d'une colonne. Il existe plusieurs types d'agrégations :
+
+- `COUNT` - permet de compter le nombre de lignes dans une colonne. Exemple: `SELECT COUNT(*) FROM users;`
+- `SUM` - permet de calculer la somme des valeurs dans une colonne. Exemple: `SELECT SUM(price) FROM orders;`
+- `MAX` - permet de récupérer la valeur maximale dans une colonne. Exemple: `SELECT MAX(price) FROM orders;`
+- `MIN` - permet de récupérer la valeur minimale dans une colonne. Exemple: `SELECT MIN(price) FROM orders;`
+- `AVG` - permet de calculer la moyenne des valeurs dans une colonne. Exemple: `SELECT AVG(price) FROM orders;`
+
+exemple de requête SQL avec agrégation AVG :
+
+```sql
+-- colonne 'age' de la table 'personnes'
+SELECT AVG(age) FROM personnes;
+-- données en sortie = moyenne des âges de toutes les personnes de la table personnes
+```
 
 ## 4. Le Modèle dans le MVC
 
@@ -471,6 +555,17 @@ CREATE TABLE orders (
   -- FOREIGN KEY indique que le champ est une clé étrangère.
   -- REFERENCES indique la table et la colonne à laquelle la clé étrangère fait référence.
 );
+```
+
+#### Les sous-requêtes
+
+Une sous-requête est une requête imbriquée dans une autre requête. Elle est utilisée pour récupérer des données à partir d'une table en fonction des valeurs d'une autre table.
+
+```sql
+-- Sélectionner les produits qui ont été commandés
+SELECT * FROM products
+WHERE id
+IN (SELECT product_id FROM orders); -- La sous-requête récupère les product_id de la table orders
 ```
 
 ---
