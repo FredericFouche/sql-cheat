@@ -264,6 +264,51 @@ LEFT JOIN cours ON inscriptions.cours_id = cours.cours_id;
 
 ```
 
+Autre exemple de requête SQL avec LEFT JOIN :
+
+```sql
+-- Sélection des colonnes à afficher : nom, rue, numéro de rue de la personne, et le témoignage associé
+SELECT personne.nom, personne.rue, personne.numero_rue, temoignage.temoignage
+
+-- Jointure des tables 'temoignage' et 'personne'
+FROM temoignage JOIN personne
+
+-- La condition de jointure : relier les deux tables via les identifiants de la personne
+ON temoignage.personne_id = personne.id
+
+-- Filtrer pour ne sélectionner que les personnes habitant 'rue Sadi Carnot'
+WHERE personne.rue LIKE 'rue Sadi Carnot'
+
+-- Ordonner les résultats par le numéro de rue de la personne, en ordre décroissant
+ORDER BY personne.numero_rue DESC
+
+-- Limiter les résultats à une seule entrée
+LIMIT 1;
+```
+
+Dans le cadre d'une double jointure LEFT :
+
+```sql
+-- Sélection des colonnes à afficher : nom de l'employé, nom du département et titre du projet
+SELECT Employes.nom, Departements.nom_departement, Projets.titre_projet
+
+-- De la table Employes
+FROM Employes
+
+-- Premier LEFT JOIN pour inclure tous les employés, même ceux sans département
+LEFT JOIN Departements
+-- Condition de jointure : relier les employés à leur département
+ON Employes.id_departement = Departements.id
+
+-- Deuxième LEFT JOIN pour inclure tous les employés, même ceux sans projet
+LEFT JOIN Projets
+-- Condition de jointure : relier les employés à leurs projets
+ON Employes.id_projet = Projets.id;
+
+-- Optionnel : ajouter une clause WHERE, ORDER BY, etc., si nécessaire
+WHERE Employes.nom = 'Dupont';
+```
+
 Schéma :
 
 ![Schéma](img/sql-join.jpg)
@@ -421,6 +466,17 @@ CREATE TABLE orders (
   -- FOREIGN KEY indique que le champ est une clé étrangère.
   -- REFERENCES indique la table et la colonne à laquelle la clé étrangère fait référence.
 );
+```
+
+#### Les sous-requêtes
+
+Une sous-requête est une requête imbriquée dans une autre requête. Elle est utilisée pour récupérer des données à partir d'une table en fonction des valeurs d'une autre table.
+
+```sql
+-- Sélectionner les produits qui ont été commandés
+SELECT * FROM products
+WHERE id
+IN (SELECT product_id FROM orders); -- La sous-requête récupère les product_id de la table orders
 ```
 
 ---
