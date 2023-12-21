@@ -22,6 +22,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [Les cardinalités](#les-cardinalités)
 - [Les tables de jointures](#les-tables-de-jointures)
 - [ORM](#orm)
+- [Les agrégations](#les-agrégations)
 
 ### [4. Le Modèle dans le MVC](#4-le-modèle-dans-le-mvc)
 
@@ -40,6 +41,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [IF EXISTS/IF NOT EXISTS](#if-existsif-not-exists)
 - [POSTGRESQL SERIAL PRIMARY KEY](#postgresql-serial-primary-key)
 - [REFERENCES](#references)
+- [Les sous-requêtes](#les-sous-requêtes)
 
 ### [6. Initialiser une base de données avec PostgreSQL dans Node.js](#6-initialiser-une-base-de-données-avec-postgresql-dans-nodejs)
 
@@ -316,6 +318,24 @@ Schéma :
 ### ORM
 
 Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les données entre un langage de programmation et une base de données. Sequelize est un ORM populaire pour Node.js, facilitant l'interaction avec des bases de données SQL comme PostgreSQL, MySQL, SQLite, et MSSQL. Avec Sequelize, les développeurs peuvent gérer les données de base de données via des objets de programmation, simplifiant ainsi le développement et la maintenance des applications.
+
+### Les agrégations
+
+A l'origine, on travaille plutôt ligne par ligne. Mais on peut travailler en faisant des **agrégations**. Cela permet de faire des calculs sur plusieurs lignes. Par exemple, on peut faire la somme de toutes les lignes d'une colonne. Il existe plusieurs types d'agrégations :
+
+- `COUNT` - permet de compter le nombre de lignes dans une colonne. Exemple: `SELECT COUNT(*) FROM users;`
+- `SUM` - permet de calculer la somme des valeurs dans une colonne. Exemple: `SELECT SUM(price) FROM orders;`
+- `MAX` - permet de récupérer la valeur maximale dans une colonne. Exemple: `SELECT MAX(price) FROM orders;`
+- `MIN` - permet de récupérer la valeur minimale dans une colonne. Exemple: `SELECT MIN(price) FROM orders;`
+- `AVG` - permet de calculer la moyenne des valeurs dans une colonne. Exemple: `SELECT AVG(price) FROM orders;`
+
+exemple de requête SQL avec agrégation AVG :
+
+```sql
+-- colonne 'age' de la table 'personnes'
+SELECT AVG(age) FROM personnes;
+-- données en sortie = moyenne des âges de toutes les personnes de la table personnes
+```
 
 ## 4. Le Modèle dans le MVC
 
