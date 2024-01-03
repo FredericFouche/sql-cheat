@@ -634,7 +634,7 @@ function getUsers() {
 sudo -i -u postgres psql
 ```
 
-on se retrouve alors dans l'invite de commande de psql avec le prompt suivant:
+- on se retrouve alors dans l'invite de commande de psql avec le prompt suivant:
 
 ```bash
 postgres=#
