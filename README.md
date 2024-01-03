@@ -697,6 +697,18 @@ function getUsers() {
 
 #### Créer un utilisateur sur une base de données PostgreSQL
 
+- Avant toute chose il faut lancer psql, pour cela il faut ouvrir le terminal et taper la commande suivante:
+
+```bash
+sudo -i -u postgres psql
+```
+
+on se retrouve alors dans l'invite de commande de psql avec le prompt suivant:
+
+```bash
+postgres=#
+```
+
 - Pour créer l'utilisateur `trombi` sur la base de données `exemple` avec le mot de passe `1234`, exécuter la commande suivante:
 
 ```sql
@@ -719,6 +731,12 @@ DROP DATABASE exemple;
 
 ```sql
 DROP USER trombi;
+```
+
+- pour ajouter créer différents éléments à partir d'un fichier sql :
+
+```bash
+psql -U trombi -d exemple -a -f ./sql/creation_dbfichier.sql
 ```
 
 #### Pour se connecter à la base de données `exemple` avec l'utilisateur `trombi`:
