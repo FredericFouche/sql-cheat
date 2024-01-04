@@ -179,6 +179,12 @@ Le Modèle Conceptuel de Données, ou MCD, est une façon de penser et de planif
 En résumé, le MCD est une représentation abstraite des données et de leurs interrelations, utilisée pour la planification et la conception de bases de données relationnelles, sans entrer dans les détails techniques de la base de données elle-même.
 C'est un exercice **académique** avec des règles et un formalisme spécifique.
 
+Les outils :
+
+- Papier/stylo
+- Outils de dessin (draw.io, Lucidchart, etc.)
+- MoCodo (https://mocodo.wingi.net/)
+
 ### Le Modèle Logique de Données (MLD)
 
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
