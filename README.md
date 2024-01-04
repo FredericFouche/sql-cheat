@@ -153,7 +153,9 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 
 En MCD, on ne parle pas de base de données directement, mais d'une **_abstraction_**. Le MCD réponds à : Qu'est ce qu'on stocke ?
 
-Le Modèle Conceptuel de Données (MCD) est un modèle de données qui permet de représenter les données d'une manière **_abstraite_**. Il est utilisé pour décrire les données et les relations entre les données. Il est généralement utilisé pour la conception de bases de données relationnelles.
+Le mot relation est à proscrire, car il est utilisé dans le langage SQL pour décrire les tables, il vaut mieux parler d'association dans le cadre du MCD.
+
+Le Modèle Conceptuel de Données (MCD) est un modèle de données qui permet de représenter les données d'une manière **_abstraite_**. Il est utilisé pour décrire les données et les associations entre les données. Il est généralement utilisé pour la conception de bases de données relationnelles.
 
 Les éléments suivants sont utilisés pour créer un MCD:
 
