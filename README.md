@@ -14,6 +14,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 - [Le Modèle Conceptuel de Données (MCD)](#le-modèle-conceptuel-de-données-mcd)
 - [Le Modèle Logique de Données (MLD)](#le-modèle-logique-de-données-mld)
+- [Le Modèle Physique de Données (MPD)](#le-modèle-physique-de-données-mpd)
 
 ### [3. Les notions de base](#3-les-notions-de-base)
 
@@ -150,7 +151,7 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 
 ### Le Modèle Conceptuel de Données (MCD)
 
-En MCD, on ne parle pas de base de données directement, mais d'une **_abstraction_**.
+En MCD, on ne parle pas de base de données directement, mais d'une **_abstraction_**. Le MCD réponds à : Qu'est ce qu'on stocke ?
 
 Le Modèle Conceptuel de Données (MCD) est un modèle de données qui permet de représenter les données d'une manière **_abstraite_**. Il est utilisé pour décrire les données et les relations entre les données. Il est généralement utilisé pour la conception de bases de données relationnelles.
 
@@ -165,8 +166,11 @@ Les éléments suivants sont utilisés pour créer un MCD:
 ### Le Modèle Logique de Données (MLD)
 
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
+Le MLD réponds à : Comment on stocke ?
 
----
+### Le Modèle Physique de Données (MPD)
+
+Le Modèle Physique de Données (MPD) est la représentation physique de la base de données. Il est utilisé pour créer la base de données. Il réponds à la question : Quels types de données on stocke ?
 
 ## 3. Les notions de base
 
