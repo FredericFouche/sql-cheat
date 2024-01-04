@@ -151,19 +151,33 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 
 ### Le Modèle Conceptuel de Données (MCD)
 
-En MCD, on ne parle pas de base de données directement, mais d'une **_abstraction_**. Le MCD réponds à : Qu'est ce qu'on stocke ?
+Le Modèle Conceptuel de Données, ou MCD, est une façon de penser et de planifier la structure des données avant de créer une base de données. Il s'agit d'une étape préliminaire où on pense aux données de façon théorique, sans se concentrer sur les détails techniques.
 
-Le mot relation est à proscrire, car il est utilisé dans le langage SQL pour décrire les tables, il vaut mieux parler d'association dans le cadre du MCD.
+#### Points Clés du MCD :
 
-Le Modèle Conceptuel de Données (MCD) est un modèle de données qui permet de représenter les données d'une manière **_abstraite_**. Il est utilisé pour décrire les données et les associations entre les données. Il est généralement utilisé pour la conception de bases de données relationnelles.
+1. **Abstraction des Données** :
 
-Les éléments suivants sont utilisés pour créer un MCD:
+   - Le MCD n'aborde pas directement la création de bases de données. Il s'agit plutôt d'une réflexion sur les données : quelles informations allons-nous stocker ?
 
-- Dessiner nos entités.
-- Répartir leurs attributs.
-- Définir un ou plusieurs déterminant (ou discriminant). On parle de clé primaire uniquement quand on parle de la base de données.
-- Identifier les relations entre les entités et les nommer par un verbe à l’infinitif.
-- Définir les cardinalités.
+2. **Terminologie** :
+
+   - Évitez d'utiliser le mot "relation" qui est spécifique aux bases de données SQL. Dans le MCD, on parle plutôt "d'associations" pour décrire les liens entre les données.
+   - Évitez d'utiliser les mots : ID, table, colonne, champ, clé primaire, clé étrangère, table de liaison qui sont des termes spécifiques aux bases de données SQL.
+   - Utilisez plutôt les mots : entité, attribut, déterminant, association, cardinalité. Ces termes sont généraux et peuvent être utilisés pour décrire les données dans n'importe quel contexte.
+
+3. **Construction du MCD** :
+
+   - **Entités** : Commencez par définir les entités, qui sont les éléments principaux (comme des catégories d'informations).
+   - **Attributs** : Attribuez des caractéristiques ou des propriétés à chaque entité.
+   - **Déterminants** : Identifiez les éléments uniques qui distinguent chaque instance d'une entité (similaire à la clé primaire dans les bases de données, mais sans se limiter à ce concept).
+   - **Associations** : Déterminez comment les entités sont liées entre elles. Ces liens sont souvent décrits par des verbes à l'infinitif.
+   - **Cardinalités** : Précisez le nombre d'instances d'une entité pouvant être associé à une autre.
+
+4. **Nature Académique** :
+   - Le MCD est un exercice théorique, souvent enseigné dans un contexte académique, et suit des règles et un formalisme spécifiques.
+
+En résumé, le MCD est une représentation abstraite des données et de leurs interrelations, utilisée pour la planification et la conception de bases de données relationnelles, sans entrer dans les détails techniques de la base de données elle-même.
+C'est un exercice **académique** avec des règles et un formalisme spécifique.
 
 ### Le Modèle Logique de Données (MLD)
 
