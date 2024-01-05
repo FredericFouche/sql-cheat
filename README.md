@@ -817,6 +817,13 @@ INSERT INTO clients (name, email, password) VALUES
 SELECT * FROM clients WHERE email = 'john@example.com';
 ```
 
+#### Begin et Commit
+
+- `BEGIN` - permet de commencer une transaction.
+- `COMMIT` - permet de valider une transaction.
+
+Ces commandes sont utilisées pour gérer les transactions. Une transaction est un ensemble d'instructions SQL qui doit être exécuté dans son intégralité ou pas du tout. Si une instruction SQL échoue, la transaction doit être annulée.
+
 ### Rows, rowCount dans le résultat d'une requête
 
 - rows - contient les données retournées par la requête. Les données sont stockées dans un tableau. Chaque élément du tableau est un objet qui contient les données d'une ligne.
