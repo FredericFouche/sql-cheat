@@ -16,6 +16,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 
 - [Le Modèle Conceptuel de Données (MCD)](#le-modèle-conceptuel-de-données-mcd)
 - [Le Modèle Logique de Données (MLD)](#le-modèle-logique-de-données-mld)
+- [Le Modèle Physique de Données (MPD)](#le-modèle-physique-de-données-mpd)
 
 ### [Les notions de base](#3-les-notions-de-base)
 
@@ -158,23 +159,82 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 
 ### Le Modèle Conceptuel de Données (MCD)
 
-En MCD, on ne parle pas de base de données directement, mais d'une **_abstraction_**.
+Le Modèle Conceptuel de Données, ou MCD, est une façon de penser et de planifier la structure des données avant de créer une base de données. Il s'agit d'une étape préliminaire où on pense aux données de façon théorique, sans se concentrer sur les détails techniques.
 
-Le Modèle Conceptuel de Données (MCD) est un modèle de données qui permet de représenter les données d'une manière **_abstraite_**. Il est utilisé pour décrire les données et les relations entre les données. Il est généralement utilisé pour la conception de bases de données relationnelles.
+#### Points Clés du MCD :
 
-Les éléments suivants sont utilisés pour créer un MCD:
+1. **Abstraction des Données** :
 
-- Dessiner nos entités.
-- Répartir leurs attributs.
-- Définir un ou plusieurs déterminant (ou discriminant). On parle de clé primaire uniquement quand on parle de la base de données.
-- Identifier les relations entre les entités et les nommer par un verbe à l’infinitif.
-- Définir les cardinalités.
+   - Le MCD n'aborde pas directement la création de bases de données. Il s'agit plutôt d'une réflexion sur les données : quelles informations allons-nous stocker ?
+
+2. **Terminologie** :
+
+   - Évitez d'utiliser le mot "relation" qui est spécifique aux bases de données SQL. Dans le MCD, on parle plutôt "d'associations" pour décrire les liens entre les données.
+   - Évitez d'utiliser les mots : ID, table, colonne, champ, clé primaire, clé étrangère, table de liaison qui sont des termes spécifiques aux bases de données SQL.
+   - Utilisez plutôt les mots : entité, attribut, déterminant, association, cardinalité. Ces termes sont généraux et peuvent être utilisés pour décrire les données dans n'importe quel contexte.
+
+3. **Construction du MCD** :
+
+   - **Entités** : Commencez par définir les entités, qui sont les éléments principaux (comme des catégories d'informations).
+   - **Attributs** : Attribuez des caractéristiques ou des propriétés à chaque entité.
+   - **Déterminants** : Identifiez les éléments uniques qui distinguent chaque instance d'une entité (similaire à la clé primaire dans les bases de données, mais sans se limiter à ce concept).
+   - **Associations** : Déterminez comment les entités sont liées entre elles. Ces liens sont souvent décrits par des verbes à l'infinitif.
+   - **Cardinalités** : Précisez le nombre d'instances d'une entité pouvant être associé à une autre.
+
+4. **Nature Académique** :
+   - Le MCD est un exercice théorique, souvent enseigné dans un contexte académique, et suit des règles et un formalisme spécifiques.
+
+En résumé, le MCD est une représentation abstraite des données et de leurs interrelations, utilisée pour la planification et la conception de bases de données relationnelles, sans entrer dans les détails techniques de la base de données elle-même.
+C'est un exercice **académique** avec des règles et un formalisme spécifique.
+
+Les outils :
+
+- Papier/stylo
+- Outils de dessin (draw.io, Lucidchart, etc.)
+- MoCodo (https://mocodo.wingi.net/)
 
 ### Le Modèle Logique de Données (MLD)
 
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
+Le MLD réponds à : Comment on stocke ?
 
----
+Règles de traduction des cardinalités
+
+On regarde entre 2 entités le type d'association :
+
+- One-To-One
+- One-To-Many
+- Many-To-Many
+
+Pour ça, on prend le max de chaque côté de l'association
+
+```
+Niveau <-- 0,N ---> CARACTERISE <--- 1,1 ---> Question
+
+        max(0,N)                    max(1,1)
+        N                           1
+
+==> Association 1-N ===> One-To-Many
+```
+
+Traduction :
+
+- `One-To-One` :
+
+  - il suffit de rajouter un champ sur une des tables
+  - (ou on peut la traduire comme une One-To-Many également)
+  - il peut être aussi plus simple d'ajouter un champ sur une des tables pour traduire une One-To-One, exemple : `good_answer_id` dans la table `questions` qui pointe vers la clé primaire `id` de la table `answers` ou alors `is_good_answer` dans la table `answers` qui est un booléen qui indique si la réponse est la bonne réponse ou pas.
+
+- `One-To-Many` :
+
+  - il suffit d'ajouter une clé étrangère dans une des deux tables (celle proche du `1,1`) qui pointe vers la clé primaire de l'autre table
+
+- `Many-To-Many` :
+  - il suffit d'ajouter une table de liaison qui porte 2 clés étrangères, chacune pointant vers la clé primaire des autres tables
+
+### Le Modèle Physique de Données (MPD)
+
+Le Modèle Physique de Données (MPD) est la représentation physique de la base de données. Il est utilisé pour créer la base de données. Il réponds à la question : Quels types de données on stocke ?
 
 ## 3. Les notions de base
 
@@ -703,7 +763,7 @@ function getUsers() {
 sudo -i -u postgres psql
 ```
 
-on se retrouve alors dans l'invite de commande de psql avec le prompt suivant:
+- on se retrouve alors dans l'invite de commande de psql avec le prompt suivant:
 
 ```bash
 postgres=#
