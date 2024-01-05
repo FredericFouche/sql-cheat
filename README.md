@@ -193,6 +193,10 @@ Les outils :
 - Outils de dessin (draw.io, Lucidchart, etc.)
 - MoCodo (https://mocodo.wingi.net/)
 
+exemple :
+
+![Schéma](img/mcd.png)
+
 ### Le Modèle Logique de Données (MLD)
 
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
@@ -231,6 +235,41 @@ Traduction :
 
 - `Many-To-Many` :
   - il suffit d'ajouter une table de liaison qui porte 2 clés étrangères, chacune pointant vers la clé primaire des autres tables
+
+exemple :
+
+![Schéma](img/mld.png)
+
+### Le Modèle Physique de Données (MPD)
+
+Le Modèle Physique de Données (MPD) représente la concrétisation du Modèle Logique de Données (MLD) dans un système de gestion de base de données spécifique. Il inclut les détails techniques nécessaires pour la mise en œuvre, tels que le type de données des colonnes, les contraintes d'intégrité, les index, et potentiellement les procédures stockées et les triggers. Le MPD répond à la question : Comment implémenter efficacement le stockage ?
+
+Adaptation du MLD au MPD:
+
+- One-To-One:
+  Dans le MPD, une relation One-To-One peut être représentée par l'ajout d'une contrainte d'unicité sur la clé étrangère. Par exemple, si la table `questions` a une colonne `good_answer_id` faisant référence à la table `answers`, un index unique sur `good_answer_id` garantit la relation One-To-One.
+
+- One-To-Many:
+  Dans cette relation, la table du côté "Many" inclura une clé étrangère pointant vers la clé primaire de la table du côté "One". Des index peuvent être ajoutés sur la clé étrangère pour améliorer les performances des requêtes. Par exemple, si une question peut avoir plusieurs réponses, la table `answers` aura une clé étrangère `question_id` pointant vers `id` dans `questions`.
+
+- Many-To-Many:
+  La table de liaison dans le MLD est transformée en une table physique dans le MPD, avec des clés étrangères pointant vers les tables associées. Des index sont souvent ajoutés sur ces clés étrangères pour optimiser les jointures. Par exemple, une table `question_tag` reliant `questions` et `tags` aurait des clés étrangères `question_id` et `tag_id`.
+
+Exemple Pratique:
+
+Prenons l'exemple de la relation entre `Niveau` et `Question` via `CARACTERISE` dans le MLD:
+
+    MLD: Niveau <-- 0,N ---> CARACTERISE <--- 1,1 ---> Question
+
+Dans le MPD, cela pourrait se traduire par :
+
+    Une table niveaux avec une clé primaire id. Les types seraient VARCHAR pour le nom et INT pour l'identifiant.
+    Une table questions avec une clé primaire id. Les types seraient VARCHAR pour le texte de la question et INT pour l'identifiant.
+    Une table de liaison caracterise avec deux clés étrangères : niveau_id référençant niveaux.id et question_id référençant questions.id. Cette table permet de gérer la relation Many-To-Many entre Niveau et Question. Les types seraient INT pour les deux clés étrangères.
+
+Pour chaque table, des types de données spécifiques sont définis pour chaque colonne (par exemple, INT pour les identifiants, VARCHAR pour les textes), ainsi que des contraintes (par exemple, NOT NULL pour les champs obligatoires).
+
+En résumé, le MPD est une étape avancée qui transforme le schéma conceptuel en une structure prête à être déployée dans une base de données, prenant en compte les spécificités de la technologie de base de données choisie.
 
 ### Le Modèle Physique de Données (MPD)
 
@@ -462,7 +501,9 @@ module.exports = client;
 
 > Ceci est un design pattern. Un design pattern est un patron de conception permettant de résoudre un problème récurrent. Il permet de résoudre un problème récurrent de manière optimale.
 
-En construction.
+L'active record est un design pattern qui permet de faire des requêtes SQL directement dans le modèle. L'idée est de créer une classe qui va représenter une table dans la base de données. Cette classe va contenir des méthodes qui vont permettre de faire des requêtes SQL. Cette classe va être instanciée dans le controller pour faire des requêtes SQL.
+
+Souvent les tables ont un ID en commun, on peut donc créer un coreModel qui va contenir les méthodes communes à toutes les tables. Ce coreModel va être étendu par les autres modèles avec l'héritage de classes.
 
 ## 5. Les commandes de base de SQL
 
@@ -847,6 +888,13 @@ INSERT INTO clients (name, email, password) VALUES
 SELECT * FROM clients WHERE email = 'john@example.com';
 ```
 
+#### Begin et Commit
+
+- `BEGIN` - permet de commencer une transaction.
+- `COMMIT` - permet de valider une transaction.
+
+Ces commandes sont utilisées pour gérer les transactions. Une transaction est un ensemble d'instructions SQL qui doit être exécuté dans son intégralité ou pas du tout. Si une instruction SQL échoue, la transaction doit être annulée.
+
 ### Rows, rowCount dans le résultat d'une requête
 
 - rows - contient les données retournées par la requête. Les données sont stockées dans un tableau. Chaque élément du tableau est un objet qui contient les données d'une ligne.
@@ -875,6 +923,18 @@ app.use(express.urlencoded({ extended: true }));
 ```
 
 Le extended permet de spécifier quel module utiliser pour parser les données. Si extended est à true, il utilisera le module `qs`, si extended est à false, il utilisera le module `querystring`.
+
+### le Package.json
+
+Il est possible d'intégrer des script pour créer/reset sa db dans le package.json. Pour cela il faut ajouter les lignes suivantes dans le package.json:
+
+```json
+"scripts": {
+    "create-db": "psql -U trombi -d exemple -a -f ./sql/creation_dbfichier.sql",
+    "populate-db": "psql -U trombi -d exemple -a -f ./sql/populate_dbfichier.sql",
+    "reset-db": "npm run create-db && npm run populate-db"
+  },
+```
 
 ### Les commandes de PostgreSQL
 
