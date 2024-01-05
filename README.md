@@ -215,6 +215,7 @@ Traduction :
 
   - il suffit de rajouter un champ sur une des tables
   - (ou on peut la traduire comme une One-To-Many également)
+  - il peut être aussi plus simple d'ajouter un champ sur une des tables pour traduire une One-To-One, exemple : `good_answer_id` dans la table `questions` qui pointe vers la clé primaire `id` de la table `answers` ou alors `is_good_answer` dans la table `answers` qui est un booléen qui indique si la réponse est la bonne réponse ou pas.
 
 - `One-To-Many` :
 
