@@ -190,6 +190,39 @@ Les outils :
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
 Le MLD réponds à : Comment on stocke ?
 
+Règles de traduction des cardinalités
+
+On regarde entre 2 entités le type d'association :
+
+- One-To-One
+- One-To-Many
+- Many-To-Many
+
+Pour ça, on prend le max de chaque côté de l'association
+
+```
+Niveau <-- 0,N ---> CARACTERISE <--- 1,1 ---> Question
+
+        max(0,N)                    max(1,1)
+        N                           1
+
+==> Association 1-N ===> One-To-Many
+```
+
+Traduction :
+
+- `One-To-One` :
+
+  - il suffit de rajouter un champ sur une des tables
+  - (ou on peut la traduire comme une One-To-Many également)
+
+- `One-To-Many` :
+
+  - il suffit d'ajouter une clé étrangère dans une des deux tables (celle proche du `1,1`) qui pointe vers la clé primaire de l'autre table
+
+- `Many-To-Many` :
+  - il suffit d'ajouter une table de liaison qui porte 2 clés étrangères, chacune pointant vers la clé primaire des autres tables
+
 ### Le Modèle Physique de Données (MPD)
 
 Le Modèle Physique de Données (MPD) est la représentation physique de la base de données. Il est utilisé pour créer la base de données. Il réponds à la question : Quels types de données on stocke ?
