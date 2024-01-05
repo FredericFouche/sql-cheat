@@ -185,6 +185,10 @@ Les outils :
 - Outils de dessin (draw.io, Lucidchart, etc.)
 - MoCodo (https://mocodo.wingi.net/)
 
+exemple :
+
+![Schéma](img/mcd.png)
+
 ### Le Modèle Logique de Données (MLD)
 
 Le Modèle Logique de Données (MLD) sert a transcrire le MCD en un langage de base de données. Il permet de connaître les tables, les colonnes, les clés primaires et les clés étrangères qui seront utilisées dans la base de données.
@@ -223,6 +227,10 @@ Traduction :
 
 - `Many-To-Many` :
   - il suffit d'ajouter une table de liaison qui porte 2 clés étrangères, chacune pointant vers la clé primaire des autres tables
+
+exemple :
+
+![Schéma](img/mld.png)
 
 ### Le Modèle Physique de Données (MPD)
 
