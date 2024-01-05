@@ -853,6 +853,18 @@ app.use(express.urlencoded({ extended: true }));
 
 Le extended permet de spécifier quel module utiliser pour parser les données. Si extended est à true, il utilisera le module `qs`, si extended est à false, il utilisera le module `querystring`.
 
+### le Package.json
+
+Il est possible d'intégrer des script pour créer/reset sa db dans le package.json. Pour cela il faut ajouter les lignes suivantes dans le package.json:
+
+```json
+"scripts": {
+    "create-db": "psql -U trombi -d exemple -a -f ./sql/creation_dbfichier.sql",
+    "populate-db": "psql -U trombi -d exemple -a -f ./sql/populate_dbfichier.sql",
+    "reset-db": "npm run create-db && npm run populate-db"
+  },
+```
+
 ### Les commandes de PostgreSQL
 
 - `\l` - permet de lister les bases de données.
