@@ -493,7 +493,9 @@ module.exports = client;
 
 > Ceci est un design pattern. Un design pattern est un patron de conception permettant de résoudre un problème récurrent. Il permet de résoudre un problème récurrent de manière optimale.
 
-En construction.
+L'active record est un design pattern qui permet de faire des requêtes SQL directement dans le modèle. L'idée est de créer une classe qui va représenter une table dans la base de données. Cette classe va contenir des méthodes qui vont permettre de faire des requêtes SQL. Cette classe va être instanciée dans le controller pour faire des requêtes SQL.
+
+Souvent les tables ont un ID en commun, on peut donc créer un coreModel qui va contenir les méthodes communes à toutes les tables. Ce coreModel va être étendu par les autres modèles avec l'héritage de classes.
 
 ## 5. Les commandes de base de SQL
 
