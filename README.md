@@ -900,3 +900,9 @@ client.query(
   }
 );
 ```
+
+## 10. Aller plus loin
+
+### Les composants d'accès aux données
+
+Pour le titre pro, on parlera souvent de DAL (Data Access Layer). Le datamapper est un composant d'accès aux données. Il permet de faire des requêtes SQL et de récupérer les données par exemple.
