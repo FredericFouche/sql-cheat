@@ -449,6 +449,20 @@ npm install --save pg
 
 Il y a un exemple dans le dossier `sequelize-example` qui montre comment utiliser sequelize avec PostgreSQL.
 
+Les commandes de base de Sequelize :
+
+| Commande           | Description                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
+| `Model.create()`   | Créer un nouvel enregistrement dans la base de données                  |
+| `Model.findAll()`  | Récupérer tous les enregistrements dans la base de données              |
+| `Model.findByPk()` | Récupérer un enregistrement dans la base de données par sa clé primaire |
+| `Model.update()`   | Mettre à jour un enregistrement dans la base de données                 |
+| `Model.destroy()`  | Supprimer un enregistrement dans la base de données                     |
+| `Model.count()`    | Compter le nombre d'enregistrements dans la base de données             |
+| `Model.sum()`      | Calculer la somme d'une colonne dans la base de données                 |
+| `Model.max()`      | Trouver la valeur maximale d'une colonne dans la base de données        |
+| `Model.min()`      | Trouver la valeur minimale d'une colonne dans la base de données        |
+
 ### Les agrégations
 
 A l'origine, on travaille plutôt ligne par ligne. Mais on peut travailler en faisant des **agrégations**. Cela permet de faire des calculs sur plusieurs lignes. Par exemple, on peut faire la somme de toutes les lignes d'une colonne. Il existe plusieurs types d'agrégations :
