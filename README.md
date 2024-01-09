@@ -434,7 +434,7 @@ Il faut installer un driver pour la base de données que l'on utilise. Par exemp
 npm install --save pg
 ```
 
-##### Configuration de Sequelize
+Il y a un exemple dans le dossier `sequelize-example` qui montre comment utiliser sequelize.
 
 ### Les agrégations
 
