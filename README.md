@@ -420,6 +420,19 @@ Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les donn�
 
 Le principe est de faire le lien entre un objet Javascript et nos tables en base de données. Cela permet de faire des requêtes SQL en Javascript. C'est une façon d'accéder aux données de la base de données depuis notre code applicatif. Exemple d'orm : `sequelize`, `prisma`, `typeorm`.
 
+Les avantages des ORM :
+
+- On définit les modèles qu'une seule fois, et on peut les réutiliser dans plusieurs projets.
+- Les ORM protègent des injections SQL.
+- Les ORM permettent de faire des requêtes SQL en Javascript.
+- Rapidité à mettre en place des requêtes SQL.
+- Gestion des jointures très puissante.
+
+Les inconvénients des ORM :
+
+- Moins de contrôle sur les requêtes SQL sous-jacentes.
+- Moins de contrôle sur les performances.
+
 #### Sequelize
 
 Il est basé sur l'active record. Il est compatible avec plusieurs bases de données : PostgreSQL, MySQL, SQLite, MariaDB et SQL server. Il s'installe avec npm.
