@@ -426,6 +426,24 @@ Schéma :
 
 Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les données entre un langage de programmation et une base de données. Sequelize est un ORM populaire pour Node.js, facilitant l'interaction avec des bases de données SQL comme PostgreSQL, MySQL, SQLite, et MSSQL. Avec Sequelize, les développeurs peuvent gérer les données de base de données via des objets de programmation, simplifiant ainsi le développement et la maintenance des applications.
 
+Le principe est de faire le lien entre un objet Javascript et nos tables en base de données. Cela permet de faire des requêtes SQL en Javascript. C'est une façon d'accéder aux données de la base de données depuis notre code applicatif. Exemple d'orm : `sequelize`, `prisma`, `typeorm`.
+
+#### Sequelize
+
+Il est basé sur l'active record. Il est compatible avec plusieurs bases de données : PostgreSQL, MySQL, SQLite, MariaDB et SQL server. Il s'installe avec npm.
+
+```bash
+npm install --save sequelize
+```
+
+Il faut installer un driver pour la base de données que l'on utilise. Par exemple, pour PostgreSQL, il faut installer le driver `pg` :
+
+```bash
+npm install --save pg
+```
+
+Il y a un exemple dans le dossier `sequelize-example` qui montre comment utiliser sequelize.
+
 ### Les agrégations
 
 A l'origine, on travaille plutôt ligne par ligne. Mais on peut travailler en faisant des **agrégations**. Cela permet de faire des calculs sur plusieurs lignes. Par exemple, on peut faire la somme de toutes les lignes d'une colonne. Il existe plusieurs types d'agrégations :
@@ -969,3 +987,9 @@ client.query(
   }
 );
 ```
+
+## 10. Aller plus loin
+
+### Les composants d'accès aux données
+
+Pour le titre pro, on parlera souvent de DAL (Data Access Layer). Le datamapper est un composant d'accès aux données. Il permet de faire des requêtes SQL et de récupérer les données par exemple.
