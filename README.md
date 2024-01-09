@@ -428,6 +428,19 @@ Un ORM (Object-Relational Mapping) est un outil qui permet de traduire les donn�
 
 Le principe est de faire le lien entre un objet Javascript et nos tables en base de données. Cela permet de faire des requêtes SQL en Javascript. C'est une façon d'accéder aux données de la base de données depuis notre code applicatif. Exemple d'orm : `sequelize`, `prisma`, `typeorm`.
 
+Les avantages des ORM :
+
+- On définit les modèles qu'une seule fois, et on peut les réutiliser dans plusieurs projets.
+- Les ORM protègent des injections SQL.
+- Les ORM permettent de faire des requêtes SQL en Javascript.
+- Rapidité à mettre en place des requêtes SQL.
+- Gestion des jointures très puissante.
+
+Les inconvénients des ORM :
+
+- Moins de contrôle sur les requêtes SQL sous-jacentes.
+- Moins de contrôle sur les performances.
+
 #### Sequelize
 
 Il est basé sur l'active record. Il est compatible avec plusieurs bases de données : PostgreSQL, MySQL, SQLite, MariaDB et SQL server. Il s'installe avec npm.
@@ -442,7 +455,21 @@ Il faut installer un driver pour la base de données que l'on utilise. Par exemp
 npm install --save pg
 ```
 
-Il y a un exemple dans le dossier `sequelize-example` qui montre comment utiliser sequelize.
+Il y a un exemple dans le dossier `sequelize-example` qui montre comment utiliser sequelize avec PostgreSQL.
+
+Les commandes de base de Sequelize :
+
+| Commande           | Description                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
+| `Model.create()`   | Créer un nouvel enregistrement dans la base de données                  |
+| `Model.findAll()`  | Récupérer tous les enregistrements dans la base de données              |
+| `Model.findByPk()` | Récupérer un enregistrement dans la base de données par sa clé primaire |
+| `Model.update()`   | Mettre à jour un enregistrement dans la base de données                 |
+| `Model.destroy()`  | Supprimer un enregistrement dans la base de données                     |
+| `Model.count()`    | Compter le nombre d'enregistrements dans la base de données             |
+| `Model.sum()`      | Calculer la somme d'une colonne dans la base de données                 |
+| `Model.max()`      | Trouver la valeur maximale d'une colonne dans la base de données        |
+| `Model.min()`      | Trouver la valeur minimale d'une colonne dans la base de données        |
 
 ### Les agrégations
 
