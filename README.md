@@ -463,6 +463,8 @@ Les commandes de base de Sequelize :
 | `Model.max()`      | Trouver la valeur maximale d'une colonne dans la base de données        |
 | `Model.min()`      | Trouver la valeur minimale d'une colonne dans la base de données        |
 
+#### Les associations avec Sequelize
+
 ### Les agrégations
 
 A l'origine, on travaille plutôt ligne par ligne. Mais on peut travailler en faisant des **agrégations**. Cela permet de faire des calculs sur plusieurs lignes. Par exemple, on peut faire la somme de toutes les lignes d'une colonne. Il existe plusieurs types d'agrégations :
