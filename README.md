@@ -471,6 +471,98 @@ Les commandes de base de Sequelize :
 | `Model.max()`      | Trouver la valeur maximale d'une colonne dans la base de données        |
 | `Model.min()`      | Trouver la valeur minimale d'une colonne dans la base de données        |
 
+#### les commandes Sequelize
+
+Pour formater les console.log de test, il existe plusieurs commandes avec Sequelize :
+
+- `.toJSON(obj)` : permet de formater les données en JSON pour un Objet
+- `.get(obj)` : permet de formater les données en JSON pour un Objet
+- `JSON.stringify(arr)` : permet de formater les données en JSON pour un tableau
+
+exemple :
+
+```js
+const user = await User.findByPk(1);
+console.log(user); // { ... }
+console.log(user.toJSON()); // { id: 1, name: 'John' }
+console.log(user.get()); // { id: 1, name: 'John' }
+
+const users = await User.findAll();
+console.log(JSON.stringify(users)); // "[{ ... }, { ... }]"
+```
+
+#### Les associations avec Sequelize
+
+Pour écrire les différentes associations en sequelize, il faut utiliser les méthodes `belongsTo`, `hasOne`, `hasMany`, `belongsToMany` et `belongsToMany` qui sont des méthodes de l'objet `Model`. Ces méthodes permettent de définir les relations entre les modèles.
+
+Les Alias permettent de :
+
+- Clarifier les requêtes et le code
+- Éviter les conflits de noms
+- Rendre plus flexible les requêtes complexes en permettant de spécifier une relation spécifique
+
+Pour une relation `One-To-Many`, il faut utiliser la méthode `hasMany` et `belongsTo`:
+
+```js
+// Un utilisateur peut avoir plusieurs commandes
+User.hasMany(Order, {
+  foreignKey: 'user_id', // clé étrangère
+  as: 'orders', // alias pour éclaircir les requêtes
+});
+// Une commande appartient à un utilisateur
+Order.belongsTo(User, {
+  foreignKey: 'user_id', // clé étrangère
+  as: 'user', // alias pour éclaircir les requêtes
+});
+
+// la requête avec les alias
+const user = await User.findByPk(1, { include: ['orders'] });
+// le resultat sera : { id: 1, name: 'John', orders: [{ id: 1, price: 10 }] }
+```
+
+Pour une relation `Many-To-Many`, il faut utiliser la méthode `belongsToMany` et `belongsToMany`:
+
+```js
+// Définition du modèle User
+const User = sequelize.define('User', {
+  name: Sequelize.STRING,
+  // autres champs
+});
+
+// Définition du modèle Product
+const Product = sequelize.define('Product', {
+  title: Sequelize.STRING,
+  // autres champs
+});
+
+// Définition de la relation many-to-many
+User.belongsToMany(Product, {
+  through: 'Order', // table de liaison
+  foreignKey: 'userId', // clé étrangère dans la table Order
+  otherKey: 'productId', // autre clé étrangère dans la table Order
+  as: 'products', // alias pour faciliter les requêtes
+});
+
+Product.belongsToMany(User, {
+  through: 'Order', // table de liaison
+  foreignKey: 'productId', // clé étrangère dans la table Order
+  otherKey: 'userId', // autre clé étrangère dans la table Order
+  as: 'users', // alias pour faciliter les requêtes
+});
+
+// Pour récupérer un utilisateur et ses produits associés
+const userWithProducts = await User.findByPk(1, {
+  include: [{ model: Product, as: 'products' }],
+});
+// Résultat attendu: { id: 1, name: 'John', products: [{ id: 1, title: 'Product 1' }, ...] }
+
+// Pour récupérer un produit et ses utilisateurs associés
+const productWithUsers = await Product.findByPk(1, {
+  include: [{ model: User, as: 'users' }],
+});
+// Résultat attendu: { id: 1, title: 'Product 1', users: [{ id: 1, name: 'John' }, ...] }
+```
+
 ### Les agrégations
 
 A l'origine, on travaille plutôt ligne par ligne. Mais on peut travailler en faisant des **agrégations**. Cela permet de faire des calculs sur plusieurs lignes. Par exemple, on peut faire la somme de toutes les lignes d'une colonne. Il existe plusieurs types d'agrégations :
