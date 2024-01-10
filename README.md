@@ -493,7 +493,7 @@ Les Alias permettent de :
 - Éviter les conflits de noms
 - Rendre plus flexible les requêtes complexes en permettant de spécifier une relation spécifique
 
-Pour une relation One-To-Many, il faut utiliser la méthode `hasMany` et `belongsTo`:
+Pour une relation `One-To-Many`, il faut utiliser la méthode `hasMany` et `belongsTo`:
 
 ```js
 // Un utilisateur peut avoir plusieurs commandes
@@ -512,7 +512,7 @@ const user = await User.findByPk(1, { include: ['orders'] });
 // le resultat sera : { id: 1, name: 'John', orders: [{ id: 1, price: 10 }] }
 ```
 
-Pour une relation Many-To-Many, il faut utiliser la méthode `belongsToMany` et `belongsToMany`:
+Pour une relation `Many-To-Many`, il faut utiliser la méthode `belongsToMany` et `belongsToMany`:
 
 ```js
 // Définition du modèle User
