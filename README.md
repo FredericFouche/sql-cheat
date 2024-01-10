@@ -463,6 +463,26 @@ Les commandes de base de Sequelize :
 | `Model.max()`      | Trouver la valeur maximale d'une colonne dans la base de données        |
 | `Model.min()`      | Trouver la valeur minimale d'une colonne dans la base de données        |
 
+#### les commandes Sequelize
+
+Pour formater les console.log de test, il existe plusieurs commandes avec Sequelize :
+
+- `.toJSON(obj)` : permet de formater les données en JSON pour un Objet
+- `.get(obj)` : permet de formater les données en JSON pour un Objet
+- `JSON.stringify(arr)` : permet de formater les données en JSON pour un tableau
+
+exemple :
+
+```js
+const user = await User.findByPk(1);
+console.log(user); // { ... }
+console.log(user.toJSON()); // { id: 1, name: 'John' }
+console.log(user.get()); // { id: 1, name: 'John' }
+
+const users = await User.findAll();
+console.log(JSON.stringify(users)); // "[{ ... }, { ... }]"
+```
+
 #### Les associations avec Sequelize
 
 Pour écrire les différentes associations en sequelize, il faut utiliser les méthodes `belongsTo`, `hasOne`, `hasMany`, `belongsToMany` et `belongsToMany` qui sont des méthodes de l'objet `Model`. Ces méthodes permettent de définir les relations entre les modèles.
