@@ -74,6 +74,7 @@ Ceci est une Cheat-sheet (anti-sèche) sur SQL. Elle contient les commandes de b
 - [pgAdmin](#pgadmin)
 - [urlencoded](#urlencoded)
 - [Les commandes de PostgreSQL](#les-commandes-de-postgresql)
+- [Les migrations](#les-migrations)
 
 ### [La sécurité](#9-la-sécurité)
 
@@ -1081,6 +1082,66 @@ Il est possible d'intégrer des script pour créer/reset sa db dans le package.j
 - `\d` - permet de décrire une table.
 - `\q` - permet de quitter PostgreSQL.
 - `\du` - permet de lister les utilisateurs.
+
+### Les migrations avec Sequelize
+
+Les migrations permettent de gérer les changements de structure de la base de données. Elles permettent de créer, modifier et supprimer des tables et des colonnes. Elles permettent de garder un historique des changements de la base de données. Elles permettent de travailler en équipe sur la base de données. Elles permettent de revenir en arrière si besoin.
+
+Pour utiliser les migrations avec Sequelize, il faut installer le module sequelize-cli avec npm:
+
+```bash
+npm install --save-dev sequelize-cli
+```
+
+Il faut ensuite créer un fichier .sequelizerc à la racine du projet et y ajouter le code suivant :
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  config: path.resolve('config', 'config.json'),
+  'models-path': path.resolve('models'),
+  'seeders-path': path.resolve('seeders'),
+  'migrations-path': path.resolve('migrations'),
+};
+```
+
+Une fois que le fichier .sequelizerc est configuré, vous pouvez créer et exécuter des migrations pour modifier la structure de votre base de données à l'aide de Sequelize. Par exemple, vous pouvez créer une migration pour ajouter une nouvelle table à votre base de données ou pour modifier une colonne existante. Ces migrations vous permettent de garder une trace des modifications apportées à votre base de données et de les appliquer de manière cohérente lorsque vous travaillez en équipe sur un projet.
+
+Pour créer une migration, il faut utiliser la commande suivante :
+
+```bash
+sequelize migration:create --name NomDeLaMigration
+```
+
+Par exemple, supposons que vous souhaitez créer une migration pour ajouter une nouvelle table "Utilisateurs" à votre base de données. Vous pouvez exécuter la commande suivante :
+
+```bash
+sequelize migration:create --name create_utilisateurs_table
+```
+
+```sql
+-- Migration pour créer la table "Utilisateurs"
+CREATE TABLE Utilisateurs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL,
+  prenom VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  mot_de_passe VARCHAR(255) NOT NULL,
+  date_de_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  date_de_mise_a_jour TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+
+Cela créera un fichier de migration dans le répertoire "migrations" de votre projet. Vous pouvez ensuite ouvrir ce fichier et définir les modifications que vous souhaitez apporter à votre base de données. Par exemple, vous pouvez ajouter des colonnes, des contraintes ou des index à la table "Utilisateurs" dans ce fichier de migration.
+
+Une fois que vous avez défini les modifications dans le fichier de migration, vous pouvez exécuter la migration en utilisant la commande suivante :
+
+```bash
+sequelize db:migrate
+```
+
+Cela appliquera les modifications à votre base de données. Les migrations vous permettent de garder un historique des changements et de les appliquer de manière cohérente, ce qui est particulièrement utile lorsque vous travaillez sur un projet en équipe ou que vous avez besoin de revenir en arrière en cas de problème.
 
 ## 9. La sécurité
 
