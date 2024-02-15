@@ -158,11 +158,33 @@ Les bases de données sont généralement contrôlées à l'aide d'un langage de
 
 ## 2. La conception d'une base de données
 
+### Le dictionnaire de données
+
+Le dictionnaire de données est une collection de données de référence nécessaire à la conception, à la mise en œuvre et à l'exploitation d'une base de données.
+
 ### Le Modèle Conceptuel de Données (MCD)
 
 Le Modèle Conceptuel de Données, ou MCD, est une façon de penser et de planifier la structure des données avant de créer une base de données. Il s'agit d'une étape préliminaire où on pense aux données de façon théorique, sans se concentrer sur les détails techniques.
 
-#### Points Clés du MCD :
+### Les formes normales
+
+Les formes normales sont des principes de conception de bases de données qui visent à garantir la structure optimale des données, minimiser la redondance et prévenir les anomalies de manipulation des données. Voici une explication plus détaillée :
+
+  Première Forme Normale (1NF) :
+    Chaque table doit avoir une structure atomique, ce qui signifie que chaque cellule doit contenir une seule valeur, et non une valeur multiple ou composite.
+    Il est essentiel d'éliminer les valeurs multiples dans les colonnes en les décomposant en plusieurs lignes distinctes.
+
+  Deuxième Forme Normale (2NF) :
+    Pour être en 2NF, une table doit être en 1NF et chaque attribut non-clé doit dépendre de la totalité de la clé candidate.
+    Cela signifie qu'il ne doit y avoir aucune dépendance partielle des attributs non-clés sur la clé primaire.
+
+  Troisième Forme Normale (3NF) :
+    En plus des exigences de la 2NF, une table doit également éliminer les dépendances transitives, c'est-à-dire que chaque attribut non-clé doit dépendre uniquement de la clé primaire, et pas des autres attributs non-clés.
+    Pour cela, il peut être nécessaire de décomposer une table en plusieurs tables pour séparer les données et éliminer les dépendances transitoires.
+
+En résumé, les formes normales sont des directives qui aident à structurer les données de manière à minimiser la redondance, à faciliter les mises à jour et à garantir la cohérence des données. En suivant ces principes, les concepteurs de bases de données peuvent créer des schémas efficaces et évolutifs pour leurs applications.
+
+#### Points Clés du MCD
 
 1. **Abstraction des Données** :
 
@@ -611,9 +633,7 @@ const orderModel = {
     return orders.rows;
   },
   async findOne(id) {
-    const order = await client.query('SELECT * FROM "orders" WHERE id = $1;', [
-      id,
-    ]);
+    const order = await client.query('SELECT * FROM "orders" WHERE id = $1;', [id]);
     return order.rows[0];
   },
 };
@@ -1158,14 +1178,10 @@ const name = 'John';
 const email = 'John@example.com';
 const password = '1234';
 
-client.query(
-  'INSERT INTO clients (name, email, password) VALUES ($1, $2, $3)',
-  [name, email, password],
-  (err, res) => {
-    console.log(err, res);
-    client.end();
-  }
-);
+client.query('INSERT INTO clients (name, email, password) VALUES ($1, $2, $3)', [name, email, password], (err, res) => {
+  console.log(err, res);
+  client.end();
+});
 ```
 
 ## 10. Aller plus loin
