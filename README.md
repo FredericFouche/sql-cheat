@@ -184,6 +184,10 @@ Les formes normales sont des principes de conception de bases de données qui vi
 
 En résumé, les formes normales sont des directives qui aident à structurer les données de manière à minimiser la redondance, à faciliter les mises à jour et à garantir la cohérence des données. En suivant ces principes, les concepteurs de bases de données peuvent créer des schémas efficaces et évolutifs pour leurs applications.
 
+### La donnée calculée
+
+On ne stocke jamais de la donnée calculée, si elle est calculée, c'est qu'elle est calculable dans le code. Il pourrait y avoir un risque d'incohérence dans la BDD.
+
 #### Points Clés du MCD
 
 1. **Abstraction des Données** :
